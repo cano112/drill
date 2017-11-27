@@ -1,5 +1,6 @@
 package pl.agh.edu.wiet.to2.kevin;
 
+import pl.agh.edu.wiet.to2.kevin.exceptions.ParseException;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,13 +9,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import pl.agh.edu.wiet.to2.kevin.model.Configuration;
 import pl.agh.edu.wiet.to2.kevin.model.Question;
-import pl.agh.edu.wiet.to2.kevin.service.parser.dto.ConfigurationDTO;
-import pl.agh.edu.wiet.to2.kevin.service.parser.dto.QuestionDTO;
 import pl.agh.edu.wiet.to2.kevin.service.parser.ConfigurationParser;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 @Component
@@ -83,7 +80,7 @@ public class AppContextImpl implements AppContext {
     private void parseFile() {
         try {
             configuration.set(configurationParser.parse(pathToConfigurationFile.get()));
-        } catch (IOException e) {
+        } catch (ParseException e) {
             configuration.set(new Configuration(new ArrayList<>()));
         }
     }
