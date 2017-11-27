@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Drill
 
 ## Build and run
