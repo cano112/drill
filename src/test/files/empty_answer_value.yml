@@ -1,0 +1,6 @@
+questions:
+- question: Czy Kevin Spacey jest winny?
+  answers:
+  - answer:
+    correct: True
+  - answer: tak
