@@ -1,13 +1,13 @@
-package model;
+package pl.agh.edu.wiet.to2.kevin.service.parser.dto;
 
-public class Answer {
+public class AnswerDTO {
     private String answer;
     private boolean correct;
 
-    public Answer() {
+    public AnswerDTO() {
     }
 
-    public Answer(String answer, boolean isCorrect) {
+    public AnswerDTO(String answer, boolean isCorrect) {
         this.answer = answer;
         this.correct = isCorrect;
     }

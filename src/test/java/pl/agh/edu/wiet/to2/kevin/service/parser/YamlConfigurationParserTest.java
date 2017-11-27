@@ -1,16 +1,21 @@
-import model.QuestionsSet;
+package pl.agh.edu.wiet.to2.kevin.service.parser;
+
+import pl.agh.edu.wiet.to2.kevin.service.parser.dto.ConfigurationDTO;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class YamlParserTest {
+public class YamlConfigurationParserTest {
+
     @Test
-    public void parse() throws Exception {
+    public void testParse() throws Exception {
         //given
         String path = "src\\test\\files\\test.yml";
-        YamlParser parser = new YamlParser(path);
+        YamlConfigurationParser parser = new YamlConfigurationParser();
+
         //when
-        QuestionsSet questions = parser.parse();
+        ConfigurationDTO questions = parser.parse(path);
+
         //then
         assertEquals(2, questions.getQuestions().size());
         assertEquals(2, questions.getQuestions().get(0).getAnswers().size());

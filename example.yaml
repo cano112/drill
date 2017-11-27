@@ -1,0 +1,15 @@
+questions:
+  - question: Czy Kevin jest niewinny?
+    answers:
+      - answer: tak
+        correct: True
+      - answer: nie
+        correct: False
+  - question: A może jednak winny?
+    answers:
+      - answer: tak
+        correct: True
+      - answer: nie
+        correct: False
+      - answer: nie wiem
+        correct: False
