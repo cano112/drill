@@ -1,0 +1,13 @@
+questions:
+- question: Czy Kevin Spacey jest winny?
+  answers:
+    - answer: tak
+    - answer: nie
+      correct: True
+- question: Dlaczego ludzie go oskarżają?
+  answers:
+    - answer: Bo popełnił przestępstwo
+    - answer: Bo ich skrzywdził
+    - answer: Z zazdrości i żądzy sławy i uznania przez społeczeństwo
+      correct: True
+    - answer: Bo ich wykorzystał
