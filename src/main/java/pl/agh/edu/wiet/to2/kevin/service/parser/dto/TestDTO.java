@@ -3,14 +3,14 @@ package pl.agh.edu.wiet.to2.kevin.service.parser.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConfigurationDTO {
+public class TestDTO {
     private List<QuestionDTO> questions;
 
-    public ConfigurationDTO() {
+    public TestDTO() {
         this.questions = new ArrayList<>();
     }
 
-    public ConfigurationDTO(List<QuestionDTO> questions) {
+    public TestDTO(List<QuestionDTO> questions) {
         this.questions = questions;
     }
 

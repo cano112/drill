@@ -11,7 +11,7 @@ import pl.agh.edu.wiet.to2.kevin.model.Answer;
 import pl.agh.edu.wiet.to2.kevin.model.Configuration;
 import pl.agh.edu.wiet.to2.kevin.model.Question;
 import pl.agh.edu.wiet.to2.kevin.service.parser.dto.AnswerDTO;
-import pl.agh.edu.wiet.to2.kevin.service.parser.dto.ConfigurationDTO;
+import pl.agh.edu.wiet.to2.kevin.service.parser.dto.TestDTO;
 import pl.agh.edu.wiet.to2.kevin.service.parser.dto.QuestionDTO;
 
 import java.io.File;
@@ -21,14 +21,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class YamlConfigurationParser implements ConfigurationParser {
+public class YamlTestParsingService implements TestParsingService {
 
     public Configuration parse(String path) throws ParseException {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         File file = new File(path);
-        ConfigurationDTO dto = null;
+        TestDTO dto = null;
         try {
-            dto = mapper.readValue(file, ConfigurationDTO.class);
+            dto = mapper.readValue(file, TestDTO.class);
         } catch (FileNotFoundException e) {
             throw new pl.agh.edu.wiet.to2.kevin.exceptions.FileNotFoundException();
         } catch (com.fasterxml.jackson.databind.exc.MismatchedInputException e) {
@@ -40,7 +40,7 @@ public class YamlConfigurationParser implements ConfigurationParser {
         return mapDtoToDomain(dto);
     }
 
-    private Configuration mapDtoToDomain(ConfigurationDTO dto) {
+    private Configuration mapDtoToDomain(TestDTO dto) {
         return new Configuration(dto.getQuestions()
                 .stream()
                 .map(questionDTO ->
@@ -52,7 +52,7 @@ public class YamlConfigurationParser implements ConfigurationParser {
                 .collect(Collectors.toList()));
     }
 
-    private void validateFormat(ConfigurationDTO dto) throws ParseException {
+    private void validateFormat(TestDTO dto) throws ParseException {
         List<QuestionDTO> questions = dto.getQuestions();
         if (questions.size() == 0)
             throw new IncorrectQuestionFormatException();
