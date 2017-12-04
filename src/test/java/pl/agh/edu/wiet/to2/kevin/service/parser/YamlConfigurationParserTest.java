@@ -17,10 +17,37 @@ public class YamlConfigurationParserTest {
         parser.parse(path);
     }
 
-    @Test(expected = EmptyFileException.class)
-    public void shouldThrowEmptyFileException() throws ParseException {
+    @Test(expected = MismatchedInputException.class)
+    public void shouldThrowMismatchedInputExceptionWhenFileIsEmpty() throws ParseException {
         //given
         String path = "src\\test\\resources\\files\\empty_file.yml";
+        YamlConfigurationParser parser = new YamlConfigurationParser();
+        //when
+        parser.parse(path);
+    }
+
+    @Test(expected = MismatchedInputException.class)
+    public void shouldThrowMismatchedInputExceptionWhenFileHasRandomContent() throws ParseException {
+        //given
+        String path = "src\\test\\resources\\files\\file_with_random_content.yml";
+        YamlConfigurationParser parser = new YamlConfigurationParser();
+        //when
+        parser.parse(path);
+    }
+
+    @Test(expected = MismatchedInputException.class)
+    public void shouldThrowMismatchedInputExceptionWhenFileHaveRandomYamlLikeContent() throws ParseException {
+        //given
+        String path = "src\\test\\resources\\files\\file_with_random_yaml_content.yml";
+        YamlConfigurationParser parser = new YamlConfigurationParser();
+        //when
+        parser.parse(path);
+    }
+
+    @Test(expected = MismatchedInputException.class)
+    public void shouldThrowMismatchedInputExceptionWhenFileHaveSomeAdditionalYamlContent() throws ParseException {
+        //given
+        String path = "src\\test\\resources\\files\\file_with_additional_random_yaml_content.yml";
         YamlConfigurationParser parser = new YamlConfigurationParser();
         //when
         parser.parse(path);

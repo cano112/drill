@@ -1,9 +1,8 @@
 package pl.agh.edu.wiet.to2.kevin.service.parser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import pl.agh.edu.wiet.to2.kevin.exceptions.EmptyFileException;
+import pl.agh.edu.wiet.to2.kevin.exceptions.MismatchedInputException;
 import pl.agh.edu.wiet.to2.kevin.exceptions.IncorrectAnswerFormatException;
 import pl.agh.edu.wiet.to2.kevin.exceptions.IncorrectQuestionFormatException;
 import pl.agh.edu.wiet.to2.kevin.exceptions.ParseException;
@@ -27,13 +26,13 @@ public class YamlConfigurationParser implements ConfigurationParser {
     public Configuration parse(String path) throws ParseException {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         File file = new File(path);
-        ConfigurationDTO dto= null;
+        ConfigurationDTO dto = null;
         try {
             dto = mapper.readValue(file, ConfigurationDTO.class);
         } catch (FileNotFoundException e) {
             throw new pl.agh.edu.wiet.to2.kevin.exceptions.FileNotFoundException();
-        } catch (MismatchedInputException e) {
-            throw new EmptyFileException();
+        } catch (com.fasterxml.jackson.databind.exc.MismatchedInputException e) {
+            throw new MismatchedInputException();
         } catch (IOException e) {
             e.printStackTrace();
         }
