@@ -1,4 +1,4 @@
-package pl.agh.edu.wiet.to2.kevin.model;
+package pl.agh.edu.wiet.to2.kevin.model.questions;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;

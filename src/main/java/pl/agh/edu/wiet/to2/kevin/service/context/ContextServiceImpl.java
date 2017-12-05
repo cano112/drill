@@ -2,10 +2,10 @@ package pl.agh.edu.wiet.to2.kevin.service.context;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.agh.edu.wiet.to2.kevin.model.AppContext;
-import pl.agh.edu.wiet.to2.kevin.exceptions.ParseException;
-import pl.agh.edu.wiet.to2.kevin.model.Question;
-import pl.agh.edu.wiet.to2.kevin.model.Test;
+import pl.agh.edu.wiet.to2.kevin.model.context.AppContext;
+import pl.agh.edu.wiet.to2.kevin.exceptions.parser.ParseException;
+import pl.agh.edu.wiet.to2.kevin.model.questions.Question;
+import pl.agh.edu.wiet.to2.kevin.model.questions.Test;
 import pl.agh.edu.wiet.to2.kevin.service.parser.TestParsingService;
 
 import java.util.ArrayList;

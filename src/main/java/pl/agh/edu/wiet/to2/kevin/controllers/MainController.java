@@ -8,10 +8,10 @@ import javafx.scene.control.ListView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import pl.agh.edu.wiet.to2.kevin.model.Answer;
-import pl.agh.edu.wiet.to2.kevin.model.Question;
+import pl.agh.edu.wiet.to2.kevin.model.questions.Answer;
+import pl.agh.edu.wiet.to2.kevin.model.questions.Question;
 import pl.agh.edu.wiet.to2.kevin.service.context.ContextService;
-import pl.agh.edu.wiet.to2.kevin.service.question.QuestionService;
+import pl.agh.edu.wiet.to2.kevin.service.questions.QuestionService;
 
 @Controller
 @Scope("prototype")

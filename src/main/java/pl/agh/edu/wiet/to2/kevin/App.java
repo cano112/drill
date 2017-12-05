@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
-import pl.agh.edu.wiet.to2.kevin.model.AppContext;
+import pl.agh.edu.wiet.to2.kevin.model.context.AppContext;
 
 @Component
 public class App extends Application {

@@ -1,8 +1,8 @@
-package pl.agh.edu.wiet.to2.kevin.service.question;
+package pl.agh.edu.wiet.to2.kevin.service.questions;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.agh.edu.wiet.to2.kevin.model.Question;
+import pl.agh.edu.wiet.to2.kevin.model.questions.Question;
 import pl.agh.edu.wiet.to2.kevin.service.context.ContextService;
 
 import java.util.ArrayList;

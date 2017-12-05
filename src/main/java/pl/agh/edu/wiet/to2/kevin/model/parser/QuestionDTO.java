@@ -1,4 +1,6 @@
-package pl.agh.edu.wiet.to2.kevin.model.dto;
+package pl.agh.edu.wiet.to2.kevin.model.parser;
+
+import pl.agh.edu.wiet.to2.kevin.model.parser.AnswerDTO;
 
 import java.util.List;
 

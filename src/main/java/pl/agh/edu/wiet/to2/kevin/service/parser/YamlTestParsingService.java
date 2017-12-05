@@ -2,17 +2,17 @@ package pl.agh.edu.wiet.to2.kevin.service.parser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import pl.agh.edu.wiet.to2.kevin.exceptions.MismatchedInputException;
-import pl.agh.edu.wiet.to2.kevin.exceptions.IncorrectAnswerFormatException;
-import pl.agh.edu.wiet.to2.kevin.exceptions.IncorrectQuestionFormatException;
-import pl.agh.edu.wiet.to2.kevin.exceptions.ParseException;
+import pl.agh.edu.wiet.to2.kevin.exceptions.parser.MismatchedInputException;
+import pl.agh.edu.wiet.to2.kevin.exceptions.parser.IncorrectAnswerFormatException;
+import pl.agh.edu.wiet.to2.kevin.exceptions.parser.IncorrectQuestionFormatException;
+import pl.agh.edu.wiet.to2.kevin.exceptions.parser.ParseException;
 import org.springframework.stereotype.Service;
-import pl.agh.edu.wiet.to2.kevin.model.Answer;
-import pl.agh.edu.wiet.to2.kevin.model.Test;
-import pl.agh.edu.wiet.to2.kevin.model.Question;
-import pl.agh.edu.wiet.to2.kevin.model.dto.AnswerDTO;
-import pl.agh.edu.wiet.to2.kevin.model.dto.TestDTO;
-import pl.agh.edu.wiet.to2.kevin.model.dto.QuestionDTO;
+import pl.agh.edu.wiet.to2.kevin.model.questions.Answer;
+import pl.agh.edu.wiet.to2.kevin.model.questions.Test;
+import pl.agh.edu.wiet.to2.kevin.model.questions.Question;
+import pl.agh.edu.wiet.to2.kevin.model.parser.AnswerDTO;
+import pl.agh.edu.wiet.to2.kevin.model.parser.TestDTO;
+import pl.agh.edu.wiet.to2.kevin.model.parser.QuestionDTO;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,7 +30,7 @@ public class YamlTestParsingService implements TestParsingService {
         try {
             dto = mapper.readValue(file, TestDTO.class);
         } catch (FileNotFoundException e) {
-            throw new pl.agh.edu.wiet.to2.kevin.exceptions.FileNotFoundException();
+            throw new pl.agh.edu.wiet.to2.kevin.exceptions.parser.FileNotFoundException();
         } catch (com.fasterxml.jackson.databind.exc.MismatchedInputException e) {
             throw new MismatchedInputException();
         } catch (IOException e) {

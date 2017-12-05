@@ -1,4 +1,4 @@
-package pl.agh.edu.wiet.to2.kevin.model;
+package pl.agh.edu.wiet.to2.kevin.model.questions;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -6,7 +6,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Question {
