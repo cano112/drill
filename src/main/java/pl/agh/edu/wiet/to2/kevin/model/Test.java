@@ -6,12 +6,12 @@ import javafx.fxml.FXML;
 
 import java.util.List;
 
-public class Configuration {
+public class Test {
 
     @FXML
     private ObservableList<Question> questions;
 
-    public Configuration(List<Question> questions) {
+    public Test(List<Question> questions) {
         this.questions = FXCollections.observableList(questions);
     }
 

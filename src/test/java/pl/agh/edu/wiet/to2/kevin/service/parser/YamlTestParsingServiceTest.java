@@ -1,14 +1,13 @@
 package pl.agh.edu.wiet.to2.kevin.service.parser;
 
 import pl.agh.edu.wiet.to2.kevin.exceptions.*;
-import pl.agh.edu.wiet.to2.kevin.model.Configuration;
-import org.junit.Test;
+import pl.agh.edu.wiet.to2.kevin.model.Test;
 
 import static org.junit.Assert.*;
 
 public class YamlTestParsingServiceTest {
 
-    @Test(expected = FileNotFoundException.class)
+    @org.junit.Test(expected = FileNotFoundException.class)
     public void shouldThrowFileNotFoundException() throws ParseException {
         //given
         String path = "src\\test\\resources\\files\\file_not_found.yml";
@@ -17,7 +16,7 @@ public class YamlTestParsingServiceTest {
         parser.parse(path);
     }
 
-    @Test(expected = MismatchedInputException.class)
+    @org.junit.Test(expected = MismatchedInputException.class)
     public void shouldThrowMismatchedInputExceptionWhenFileIsEmpty() throws ParseException {
         //given
         String path = "src\\test\\resources\\files\\empty_file.yml";
@@ -26,7 +25,7 @@ public class YamlTestParsingServiceTest {
         parser.parse(path);
     }
 
-    @Test(expected = MismatchedInputException.class)
+    @org.junit.Test(expected = MismatchedInputException.class)
     public void shouldThrowMismatchedInputExceptionWhenFileHasRandomContent() throws ParseException {
         //given
         String path = "src\\test\\resources\\files\\file_with_random_content.yml";
@@ -35,7 +34,7 @@ public class YamlTestParsingServiceTest {
         parser.parse(path);
     }
 
-    @Test(expected = MismatchedInputException.class)
+    @org.junit.Test(expected = MismatchedInputException.class)
     public void shouldThrowMismatchedInputExceptionWhenFileHaveRandomYamlLikeContent() throws ParseException {
         //given
         String path = "src\\test\\resources\\files\\file_with_random_yaml_content.yml";
@@ -44,7 +43,7 @@ public class YamlTestParsingServiceTest {
         parser.parse(path);
     }
 
-    @Test(expected = MismatchedInputException.class)
+    @org.junit.Test(expected = MismatchedInputException.class)
     public void shouldThrowMismatchedInputExceptionWhenFileHaveSomeAdditionalYamlContent() throws ParseException {
         //given
         String path = "src\\test\\resources\\files\\file_with_additional_random_yaml_content.yml";
@@ -53,7 +52,7 @@ public class YamlTestParsingServiceTest {
         parser.parse(path);
     }
 
-    @Test(expected = IncorrectQuestionFormatException.class)
+    @org.junit.Test(expected = IncorrectQuestionFormatException.class)
     public void shouldThrowIncorrectQuestionFormatExceptionWhenIsNoQuestions() throws ParseException {
         //given
         String path = "src\\test\\resources\\files\\empty_questions_array.yml";
@@ -62,7 +61,7 @@ public class YamlTestParsingServiceTest {
         parser.parse(path);
     }
 
-    @Test(expected = IncorrectQuestionFormatException.class)
+    @org.junit.Test(expected = IncorrectQuestionFormatException.class)
     public void shouldThrowIncorrectQuestionFormatExceptionWhenQuestionIsEmpty() throws ParseException {
         //given
         String path = "src\\test\\resources\\files\\empty_question_value.yml";
@@ -71,7 +70,7 @@ public class YamlTestParsingServiceTest {
         parser.parse(path);
     }
 
-    @Test(expected = IncorrectAnswerFormatException.class)
+    @org.junit.Test(expected = IncorrectAnswerFormatException.class)
     public void shouldThrowIncorrectAnswerFormatExceptionWhenIsNoAnswers() throws ParseException {
         //given
         String path = "src\\test\\resources\\files\\empty_answers_array.yml";
@@ -80,7 +79,7 @@ public class YamlTestParsingServiceTest {
         parser.parse(path);
     }
 
-    @Test(expected = IncorrectAnswerFormatException.class)
+    @org.junit.Test(expected = IncorrectAnswerFormatException.class)
     public void shouldThrowIncorrectAnswerFormatExceptionWhenIsOnlyOneAnswer() throws ParseException {
         //given
         String path = "src\\test\\resources\\files\\only_one_answer.yml";
@@ -89,7 +88,7 @@ public class YamlTestParsingServiceTest {
         parser.parse(path);
     }
 
-    @Test(expected = IncorrectAnswerFormatException.class)
+    @org.junit.Test(expected = IncorrectAnswerFormatException.class)
     public void shouldThrowIncorrectAnswerFormatExceptionWhenAnswerIsEmpty() throws ParseException {
         //given
         String path = "src\\test\\resources\\files\\empty_answer_value.yml";
@@ -98,7 +97,7 @@ public class YamlTestParsingServiceTest {
         parser.parse(path);
     }
 
-    @Test(expected = IncorrectAnswerFormatException.class)
+    @org.junit.Test(expected = IncorrectAnswerFormatException.class)
     public void shouldThrowIncorrectAnswerFormatExceptionWhenAllAnswersAreIncorrect() throws ParseException {
         //given
         String path = "src\\test\\resources\\files\\only_incorrect_answers.yml";
@@ -107,17 +106,17 @@ public class YamlTestParsingServiceTest {
         parser.parse(path);
     }
 
-    @Test
+    @org.junit.Test
     public void shouldParseWholeFileIfFileIsInCorrectFormat() throws ParseException {
         //given
         String path = "src\\test\\resources\\files\\correct_file.yml";
         YamlTestParsingService parser = new YamlTestParsingService();
         //when
-        Configuration configuration = parser.parse(path);
+        Test test = parser.parse(path);
         //then
-        assertEquals(2, configuration.getQuestions().size());
-        assertEquals(2, configuration.getQuestions().get(0).getAnswers().size());
-        assertEquals(4, configuration.getQuestions().get(1).getAnswers().size());
+        assertEquals(2, test.getQuestions().size());
+        assertEquals(2, test.getQuestions().get(0).getAnswers().size());
+        assertEquals(4, test.getQuestions().get(1).getAnswers().size());
     }
 
 }

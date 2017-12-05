@@ -1,4 +1,4 @@
-package pl.agh.edu.wiet.to2.kevin.service.parser.dto;
+package pl.agh.edu.wiet.to2.kevin.model.dto;
 
 public class AnswerDTO {
     private String answer;

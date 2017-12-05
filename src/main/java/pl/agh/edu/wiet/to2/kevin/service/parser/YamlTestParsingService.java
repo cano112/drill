@@ -8,11 +8,11 @@ import pl.agh.edu.wiet.to2.kevin.exceptions.IncorrectQuestionFormatException;
 import pl.agh.edu.wiet.to2.kevin.exceptions.ParseException;
 import org.springframework.stereotype.Service;
 import pl.agh.edu.wiet.to2.kevin.model.Answer;
-import pl.agh.edu.wiet.to2.kevin.model.Configuration;
+import pl.agh.edu.wiet.to2.kevin.model.Test;
 import pl.agh.edu.wiet.to2.kevin.model.Question;
-import pl.agh.edu.wiet.to2.kevin.service.parser.dto.AnswerDTO;
-import pl.agh.edu.wiet.to2.kevin.service.parser.dto.TestDTO;
-import pl.agh.edu.wiet.to2.kevin.service.parser.dto.QuestionDTO;
+import pl.agh.edu.wiet.to2.kevin.model.dto.AnswerDTO;
+import pl.agh.edu.wiet.to2.kevin.model.dto.TestDTO;
+import pl.agh.edu.wiet.to2.kevin.model.dto.QuestionDTO;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @Service
 public class YamlTestParsingService implements TestParsingService {
 
-    public Configuration parse(String path) throws ParseException {
+    public Test parse(String path) throws ParseException {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         File file = new File(path);
         TestDTO dto = null;
@@ -40,8 +40,8 @@ public class YamlTestParsingService implements TestParsingService {
         return mapDtoToDomain(dto);
     }
 
-    private Configuration mapDtoToDomain(TestDTO dto) {
-        return new Configuration(dto.getQuestions()
+    private Test mapDtoToDomain(TestDTO dto) {
+        return new Test(dto.getQuestions()
                 .stream()
                 .map(questionDTO ->
                         new Question(questionDTO.getQuestion(),

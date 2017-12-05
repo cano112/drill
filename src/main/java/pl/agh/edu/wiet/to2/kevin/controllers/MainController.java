@@ -8,17 +8,16 @@ import javafx.scene.control.ListView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import pl.agh.edu.wiet.to2.kevin.AppContext;
-import pl.agh.edu.wiet.to2.kevin.AppContextImpl;
 import pl.agh.edu.wiet.to2.kevin.model.Answer;
 import pl.agh.edu.wiet.to2.kevin.model.Question;
+import pl.agh.edu.wiet.to2.kevin.service.context.ContextService;
 import pl.agh.edu.wiet.to2.kevin.service.question.QuestionService;
 
 @Controller
 @Scope("prototype")
 public class MainController {
 
-    private final AppContext appContext;
+    private final ContextService contextService;
     private final QuestionService questionService;
 
     @FXML
@@ -28,8 +27,8 @@ public class MainController {
     private ObjectProperty<Question> currentQuestion;
 
     @Autowired
-    public MainController(AppContextImpl appContext, QuestionService questionService) {
-        this.appContext = appContext;
+    public MainController(ContextService contextService, QuestionService questionService) {
+        this.contextService = contextService;
         this.questionService = questionService;
         this.currentQuestion = new SimpleObjectProperty<>(questionService.getNextQuestion());
         this.answersListView = new ListView<>();
@@ -39,7 +38,7 @@ public class MainController {
     private void initialize() {
         answersListView.setItems(getCurrentQuestion().getAnswers());
 
-        appContext.configurationProperty().addListener(observable -> {
+        contextService.getContext().testProperty().addListener(observable -> {
             Question question = questionService.getNextQuestion();
             currentQuestion.set(question);
         });
@@ -49,7 +48,8 @@ public class MainController {
         });
 
         // temporary workaround
-        appContext.setConfiguration("example.yaml");
+        contextService.setTest("example.yaml");
+        setCurrentQuestion(questionService.getNextQuestion());
     }
 
     public Question getCurrentQuestion() {
