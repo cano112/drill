@@ -1,7 +1,7 @@
 package pl.agh.edu.wiet.to2.kevin.service.context;
 
-import pl.agh.edu.wiet.to2.kevin.model.AppContext;
-import pl.agh.edu.wiet.to2.kevin.model.Question;
+import pl.agh.edu.wiet.to2.kevin.model.context.AppContext;
+import pl.agh.edu.wiet.to2.kevin.model.questions.Question;
 
 import java.util.List;
 

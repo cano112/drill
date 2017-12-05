@@ -1,14 +1,13 @@
-package pl.agh.edu.wiet.to2.kevin.model;
+package pl.agh.edu.wiet.to2.kevin.model.context;
 
-import pl.agh.edu.wiet.to2.kevin.exceptions.ParseException;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import pl.agh.edu.wiet.to2.kevin.model.Test;
-import pl.agh.edu.wiet.to2.kevin.model.Question;
+import pl.agh.edu.wiet.to2.kevin.model.questions.Question;
+import pl.agh.edu.wiet.to2.kevin.model.questions.Test;
 import pl.agh.edu.wiet.to2.kevin.service.parser.TestParsingService;
 
 import java.util.ArrayList;
