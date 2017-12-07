@@ -20,6 +20,6 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         final ApplicationContext ctx = new AnnotationConfigApplicationContext("pl.agh.edu.wiet.to2.kevin");
         ViewResolver viewResolver =(ViewResolver)ctx.getBean("viewResolver");
-        viewResolver.showView(stage, "mainView");
+        viewResolver.showView(stage, "menuView");
     }
 }

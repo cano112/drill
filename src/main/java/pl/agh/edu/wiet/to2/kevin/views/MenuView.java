@@ -16,7 +16,7 @@ public class MenuView extends View {
 
     public void start(Stage stage) throws Exception {
         SpringFXMLLoader loader = new SpringFXMLLoader(getClass().getResource("/fxml/menu.fxml"), ctx);
-        Scene scene = new Scene(loader.load(), 300, 307);
+        Scene scene = new Scene(loader.load(), 400, 200);
         ((BaseController)loader.getController()).setStage(stage);
         stage.setScene(scene);
         stage.show();

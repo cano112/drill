@@ -47,13 +47,8 @@ public class MainController extends BaseController {
             currentQuestion.set(question);
         });
 
-        currentQuestionProperty().addListener((observable, oldValue, newValue) -> {
-            answersListView.setItems(newValue.getAnswers());
-        });
-
-        // temporary workaround
-        contextService.setTest("example.yaml");
-        setCurrentQuestion(questionService.getNextQuestion());
+        currentQuestionProperty().addListener((observable, oldValue, newValue) ->
+            answersListView.setItems(newValue.getAnswers()));
     }
 
     public Question getCurrentQuestion() {

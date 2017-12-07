@@ -1,15 +1,20 @@
-package pl.agh.edu.wiet.to2.kevin.service.context;
+package pl.agh.edu.wiet.to2.kevin.service.context.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.agh.edu.wiet.to2.kevin.exceptions.parser.MismatchedInputException;
 import pl.agh.edu.wiet.to2.kevin.model.context.AppContext;
 import pl.agh.edu.wiet.to2.kevin.exceptions.parser.ParseException;
 import pl.agh.edu.wiet.to2.kevin.model.questions.Question;
 import pl.agh.edu.wiet.to2.kevin.model.questions.Test;
+import pl.agh.edu.wiet.to2.kevin.service.context.ContextService;
 import pl.agh.edu.wiet.to2.kevin.service.parser.TestParsingService;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class ContextServiceImpl implements ContextService {
@@ -55,6 +60,20 @@ public class ContextServiceImpl implements ContextService {
         appContext.setCurrentQuestionIndex(index);
     }
 
+    @Override
+    public String getTestFileName() {
+        Pattern pattern = Pattern.compile("[\\\\/]([^\\\\/]*)$");
+        Matcher matcher = pattern.matcher(appContext.getPathToTestFile());
+        if(matcher.find()) {
+            System.out.println(matcher.group(1));
+            return matcher.group(1);
+        }
+        throw new MismatchedInputException("Wrong file path");
+    }
+    private void resetToDefault() {
+        appContext.setCurrentQuestionIndex(-1);
+        appContext.setQuestions(appContext.getTest().getQuestions());
+    }
     private void parseFile() {
         try {
             appContext.setTest(testParsingService.parse(appContext.getPathToTestFile()));
@@ -63,8 +82,5 @@ public class ContextServiceImpl implements ContextService {
         }
     }
 
-    private void resetToDefault() {
-        appContext.setCurrentQuestionIndex(-1);
-        appContext.setQuestions(appContext.getTest().getQuestions());
-    }
+
 }

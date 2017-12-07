@@ -1,4 +1,4 @@
-package pl.agh.edu.wiet.to2.kevin.service.parser;
+package pl.agh.edu.wiet.to2.kevin.service.parser.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
@@ -13,6 +13,7 @@ import pl.agh.edu.wiet.to2.kevin.model.questions.Question;
 import pl.agh.edu.wiet.to2.kevin.model.parser.AnswerDTO;
 import pl.agh.edu.wiet.to2.kevin.model.parser.TestDTO;
 import pl.agh.edu.wiet.to2.kevin.model.parser.QuestionDTO;
+import pl.agh.edu.wiet.to2.kevin.service.parser.TestParsingService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
