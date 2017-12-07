@@ -31,7 +31,7 @@ public class MenuController extends BaseController {
     }
 
     public void onBrowseButtonClicked(ActionEvent actionEvent) {
-        menuService.pickFile(getStage().orElse(new Stage()));
+        setFileName(menuService.pickFile(getStage().orElse(new Stage())).orElse(""));
     }
 
     public void onStartButtonClicked(ActionEvent actionEvent) {

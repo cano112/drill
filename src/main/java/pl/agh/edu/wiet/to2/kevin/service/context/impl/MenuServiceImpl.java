@@ -29,6 +29,6 @@ public class MenuServiceImpl implements MenuService {
         if(file != null) {
             contextService.setTest(file.getAbsolutePath());
         }
-        return Optional.ofNullable(contextService.getTestFileName());
+        return contextService.getTestFileName();
     }
 }

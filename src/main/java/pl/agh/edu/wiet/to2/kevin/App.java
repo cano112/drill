@@ -8,8 +8,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Component;
 import pl.agh.edu.wiet.to2.kevin.views.resolver.ViewResolver;
 
-
-@Component
 public class App extends Application {
 
     public static void main(String[] args) {

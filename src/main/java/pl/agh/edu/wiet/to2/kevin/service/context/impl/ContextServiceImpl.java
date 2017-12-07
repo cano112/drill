@@ -13,6 +13,7 @@ import pl.agh.edu.wiet.to2.kevin.service.parser.TestParsingService;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -61,14 +62,14 @@ public class ContextServiceImpl implements ContextService {
     }
 
     @Override
-    public String getTestFileName() {
+    public Optional<String> getTestFileName() {
         Pattern pattern = Pattern.compile("[\\\\/]([^\\\\/]*)$");
         Matcher matcher = pattern.matcher(appContext.getPathToTestFile());
+        String name = null;
         if(matcher.find()) {
-            System.out.println(matcher.group(1));
-            return matcher.group(1);
+            name = matcher.group(1);
         }
-        throw new MismatchedInputException("Wrong file path");
+        return Optional.ofNullable(name);
     }
     private void resetToDefault() {
         appContext.setCurrentQuestionIndex(-1);

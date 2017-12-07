@@ -40,5 +40,22 @@ public class Question {
     public void setAnswers(List<Answer> answers) {
         this.answers.setAll(answers);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Question question1 = (Question) o;
+
+        return question.equals(question1.question) && answers.equals(question1.answers);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = question.hashCode();
+        result = 31 * result + answers.hashCode();
+        return result;
+    }
 }
 
