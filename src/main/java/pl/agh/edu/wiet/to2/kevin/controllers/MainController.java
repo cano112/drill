@@ -84,12 +84,7 @@ public class MainController extends BaseController {
         StatsChange statsChange = scoringStrategy.parseStatsChange(answeredQuestion);
         statsService.applyChangeToContext(statsChange);
 
-        // TODO when no question show summary
-        Question question = questionChoiceStrategy.getNextQuestion().orElse(new Question("", new ArrayList<>()));
-        if (question.getQuestion().equals("")) {
-            viewResolver.showView(getStage().orElse(new Stage()), "summaryView");
-        } else
-            setCurrentQuestion(question);
+        setCurrentQuestion(getNextQuestion());
     }
 
     public void onMenuButtonClicked(ActionEvent actionEvent) {
@@ -126,7 +121,10 @@ public class MainController extends BaseController {
     }
 
     private Question getNextQuestion() {
-        // TODO when no question show summary
-        return questionChoiceStrategy.getNextQuestion().orElse(new Question("", new ArrayList<>()));
+        return questionChoiceStrategy.getNextQuestion().orElseGet(() -> {
+            viewResolver.showView(getStage().orElse(new Stage()), "summaryView");
+            return new Question("", new ArrayList<>());
+        });
+
     }
 }
