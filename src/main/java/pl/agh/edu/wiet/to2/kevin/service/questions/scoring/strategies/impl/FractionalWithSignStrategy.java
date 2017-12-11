@@ -6,16 +6,16 @@ import org.springframework.stereotype.Service;
 import pl.agh.edu.wiet.to2.kevin.service.questions.scoring.strategies.BaseScoringStrategy;
 
 @Service
-@Qualifier("pointForPointScoringStrategy")
+@Qualifier("fractionalWithSignScoringStrategy")
 @Scope("singleton")
-public class PointForPointStrategy extends BaseScoringStrategy {
+public class FractionalWithSignStrategy extends BaseScoringStrategy {
 
-    public PointForPointStrategy() {
-        super(false, true, false, 1, -1);
+    public FractionalWithSignStrategy() {
+        super(false, true, true, 1, -1);
     }
 
     @Override
     public String getName() {
-        return "Point for point";
+        return "Fractional point";
     }
 }

@@ -7,4 +7,6 @@ import java.util.Optional;
 public interface QuestionChoiceStrategy {
 
     Optional<Question> getNextQuestion();
+
+    String getName();
 }

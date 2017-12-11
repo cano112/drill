@@ -1,6 +1,5 @@
 package pl.agh.edu.wiet.to2.kevin.service.context.impl;
 
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
@@ -8,16 +7,15 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
-import pl.agh.edu.wiet.to2.kevin.model.context.AppContext;
 import pl.agh.edu.wiet.to2.kevin.service.context.ContextService;
 import pl.agh.edu.wiet.to2.kevin.service.context.MenuService;
 import pl.agh.edu.wiet.to2.kevin.service.questions.choice.strategies.QuestionChoiceStrategy;
 import pl.agh.edu.wiet.to2.kevin.service.questions.scoring.strategies.ScoringStrategy;
 
 import java.io.File;
-import java.util.Observable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Component
 public class MenuServiceImpl implements MenuService {
@@ -36,7 +34,7 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public Optional<String> pickFile(Stage stage) {
         File file = fileChooser.showOpenDialog(stage);
-        if(file != null) {
+        if (file != null) {
             contextService.setTest(file.getAbsolutePath());
         }
         return contextService.getTestFileName();
@@ -44,11 +42,15 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public ObservableList<String> getScoringStrategies() {
-        return FXCollections.observableArrayList(ctx.getBeansOfType(ScoringStrategy.class).keySet());
+        List<String> names = new ArrayList<>();
+        ctx.getBeansOfType(ScoringStrategy.class).forEach((k, v) -> names.add(v.getName()));
+        return FXCollections.observableArrayList(names);
     }
 
     @Override
     public ObservableList<String> getQuestionChoiceStrategies() {
-        return FXCollections.observableArrayList(ctx.getBeansOfType(QuestionChoiceStrategy.class).keySet());
+        List<String> names = new ArrayList<>();
+        ctx.getBeansOfType(QuestionChoiceStrategy.class).forEach((k, v) -> names.add(v.getName()));
+        return FXCollections.observableArrayList(names);
     }
 }

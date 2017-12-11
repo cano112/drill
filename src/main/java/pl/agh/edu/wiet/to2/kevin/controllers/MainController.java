@@ -85,8 +85,11 @@ public class MainController extends BaseController {
         statsService.applyChangeToContext(statsChange);
 
         // TODO when no question show summary
-        setCurrentQuestion(questionChoiceStrategy.getNextQuestion()
-                .orElse(new Question("", new ArrayList<>())));
+        Question question = questionChoiceStrategy.getNextQuestion().orElse(new Question("", new ArrayList<>()));
+        if (question.getQuestion().equals("")) {
+            viewResolver.showView(getStage().orElse(new Stage()), "summaryView");
+        } else
+            setCurrentQuestion(question);
     }
 
     public void onMenuButtonClicked(ActionEvent actionEvent) {

@@ -29,7 +29,7 @@ public class EveryQuestionOnceStrategy implements QuestionChoiceStrategy {
         int currentIndex = contextService.getCurrentQuestionIndex();
         int questionsCount = contextService.getQuestionsCount();
 
-        if(questionsCount == 0) {
+        if (questionsCount == 0) {
             throw new EmptyQuestionListException("No questions");
         }
 
@@ -40,5 +40,10 @@ public class EveryQuestionOnceStrategy implements QuestionChoiceStrategy {
         } catch (IndexOutOfBoundsException e) {
             return Optional.empty();
         }
+    }
+
+    @Override
+    public String getName() {
+        return "ala";
     }
 }

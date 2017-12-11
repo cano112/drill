@@ -16,6 +16,7 @@ import pl.agh.edu.wiet.to2.kevin.service.questions.scoring.strategies.ScoringStr
 import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -76,7 +77,7 @@ public class ContextServiceImpl implements ContextService {
         Pattern pattern = Pattern.compile("[\\\\/]([^\\\\/]*)$");
         Matcher matcher = pattern.matcher(appContext.getPathToTestFile());
         String name = null;
-        if(matcher.find()) {
+        if (matcher.find()) {
             name = matcher.group(1);
         }
         return Optional.ofNullable(name);
@@ -89,7 +90,7 @@ public class ContextServiceImpl implements ContextService {
 
     @Override
     public Optional<String> getScoringStrategyName() {
-        if(appContext.getScoringStrategy().equals("")) {
+        if (appContext.getScoringStrategy().equals("")) {
             return Optional.empty();
         }
         return Optional.of(appContext.getScoringStrategy());
@@ -97,10 +98,14 @@ public class ContextServiceImpl implements ContextService {
 
     @Override
     public Optional<ScoringStrategy> getScoringStrategy() {
-        if(appContext.getScoringStrategy().equals("")) {
+        if (appContext.getScoringStrategy().equals("")) {
             return Optional.empty();
         }
-        return Optional.of((ScoringStrategy)ctx.getBean(appContext.getScoringStrategy()));
+        return ctx.getBeansOfType(ScoringStrategy.class)
+                .values()
+                .stream()
+                .filter(v -> v.getName().equals(appContext.getScoringStrategy()))
+                .findFirst();
     }
 
     @Override
@@ -108,8 +113,9 @@ public class ContextServiceImpl implements ContextService {
         appContext.setQuestionChoiceStrategy(questionChoiceStrategy);
     }
 
-    @Override public Optional<String> getQuestionChoiceStrategyName() {
-        if(appContext.getQuestionChoiceStrategy().equals("")) {
+    @Override
+    public Optional<String> getQuestionChoiceStrategyName() {
+        if (appContext.getQuestionChoiceStrategy().equals("")) {
             return Optional.empty();
         }
         return Optional.of(appContext.getQuestionChoiceStrategy());
@@ -117,7 +123,14 @@ public class ContextServiceImpl implements ContextService {
 
     @Override
     public Optional<QuestionChoiceStrategy> getQuestionChoiceStrategy() {
-        return Optional.of((QuestionChoiceStrategy)ctx.getBean(appContext.getQuestionChoiceStrategy()));
+        if (appContext.getQuestionChoiceStrategy().equals("")) {
+            return Optional.empty();
+        }
+        return ctx.getBeansOfType(QuestionChoiceStrategy.class)
+                .values()
+                .stream()
+                .filter(v -> v.getName().equals(appContext.getQuestionChoiceStrategy()))
+                .findFirst();
     }
 
     public void resetToDefault() {
@@ -125,6 +138,7 @@ public class ContextServiceImpl implements ContextService {
         appContext.setQuestions(appContext.getTest().getQuestions());
         appContext.setGameStatistics(new GameStatistics());
     }
+
     private void parseFile() {
         try {
             appContext.setTest(testParsingService.parse(appContext.getPathToTestFile()));

@@ -37,6 +37,10 @@ public class Question {
         return answers;
     }
 
+    public ObservableList<Answer> getCorrectAnswers() {
+        return answers.filtered(Answer::isCorrect);
+    }
+
     public void setAnswers(List<Answer> answers) {
         this.answers.setAll(answers);
     }

@@ -12,4 +12,6 @@ public interface ScoringStrategy {
     default StatsChange parseStatsChange(AnsweredQuestion answeredQuestion) {
         return parseStatsChange(getScore(answeredQuestion));
     }
+
+    String getName();
 }
