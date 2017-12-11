@@ -14,6 +14,4 @@ public abstract class BaseController {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
-
-
 }
