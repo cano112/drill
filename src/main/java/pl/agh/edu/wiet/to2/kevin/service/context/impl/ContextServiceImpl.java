@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import pl.agh.edu.wiet.to2.kevin.model.context.AppContext;
 import pl.agh.edu.wiet.to2.kevin.exceptions.parser.ParseException;
+import pl.agh.edu.wiet.to2.kevin.model.context.GameStatistics;
 import pl.agh.edu.wiet.to2.kevin.model.questions.Question;
 import pl.agh.edu.wiet.to2.kevin.model.questions.Test;
 import pl.agh.edu.wiet.to2.kevin.service.context.ContextService;
@@ -12,6 +13,7 @@ import pl.agh.edu.wiet.to2.kevin.service.parser.TestParsingService;
 import pl.agh.edu.wiet.to2.kevin.service.questions.choice.strategies.QuestionChoiceStrategy;
 import pl.agh.edu.wiet.to2.kevin.service.questions.scoring.strategies.ScoringStrategy;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -55,6 +57,11 @@ public class ContextServiceImpl implements ContextService {
     }
 
     @Override
+    public GameStatistics getGameStatistics() {
+        return appContext.getGameStatistics();
+    }
+
+    @Override
     public int getCurrentQuestionIndex() {
         return appContext.getCurrentQuestionIndex();
     }
@@ -76,8 +83,16 @@ public class ContextServiceImpl implements ContextService {
     }
 
     @Override
-    public void setScoringStrategy(String scoringStrategy) {
+    public void setScoringStrategyName(String scoringStrategy) {
         appContext.setScoringStrategy(scoringStrategy);
+    }
+
+    @Override
+    public Optional<String> getScoringStrategyName() {
+        if(appContext.getScoringStrategy().equals("")) {
+            return Optional.empty();
+        }
+        return Optional.of(appContext.getScoringStrategy());
     }
 
     @Override
@@ -89,8 +104,15 @@ public class ContextServiceImpl implements ContextService {
     }
 
     @Override
-    public void setQuestionChoiceStrategy(String questionChoiceStrategy) {
+    public void setQuestionChoiceStrategyName(String questionChoiceStrategy) {
         appContext.setQuestionChoiceStrategy(questionChoiceStrategy);
+    }
+
+    @Override public Optional<String> getQuestionChoiceStrategyName() {
+        if(appContext.getQuestionChoiceStrategy().equals("")) {
+            return Optional.empty();
+        }
+        return Optional.of(appContext.getQuestionChoiceStrategy());
     }
 
     @Override
@@ -98,9 +120,10 @@ public class ContextServiceImpl implements ContextService {
         return Optional.of((QuestionChoiceStrategy)ctx.getBean(appContext.getQuestionChoiceStrategy()));
     }
 
-    private void resetToDefault() {
+    public void resetToDefault() {
         appContext.setCurrentQuestionIndex(-1);
         appContext.setQuestions(appContext.getTest().getQuestions());
+        appContext.setGameStatistics(new GameStatistics());
     }
     private void parseFile() {
         try {

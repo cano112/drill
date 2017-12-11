@@ -1,4 +1,4 @@
-package pl.agh.edu.wiet.to2.kevin.model.questions;
+package pl.agh.edu.wiet.to2.kevin.model.questions.stats;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;

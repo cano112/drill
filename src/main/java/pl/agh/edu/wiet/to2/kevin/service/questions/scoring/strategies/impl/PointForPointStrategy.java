@@ -5,7 +5,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import pl.agh.edu.wiet.to2.kevin.model.questions.Answer;
 import pl.agh.edu.wiet.to2.kevin.model.questions.AnsweredQuestion;
-import pl.agh.edu.wiet.to2.kevin.model.questions.Score;
+import pl.agh.edu.wiet.to2.kevin.model.questions.stats.Score;
+import pl.agh.edu.wiet.to2.kevin.model.questions.stats.StatsChange;
 import pl.agh.edu.wiet.to2.kevin.service.questions.scoring.strategies.ScoringStrategy;
 
 @Service
@@ -28,5 +29,13 @@ public class PointForPointStrategy implements ScoringStrategy {
         }
 
         return new Score((double)(correctAnswers - wrongAnswers), (double)maxAnswers);
+    }
+
+    @Override
+    public StatsChange parseStatsChange(Score score) {
+        return new StatsChange(score.getScoreValue(),
+                score.getScoreValue() == score.getMaxValue(),
+                score.getScoreValue() != score.getMaxValue() && score.getScoreValue() > 0,
+                score.getScoreValue() <= 0);
     }
 }

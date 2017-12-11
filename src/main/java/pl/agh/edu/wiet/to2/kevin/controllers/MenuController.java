@@ -1,9 +1,7 @@
 package pl.agh.edu.wiet.to2.kevin.controllers;
 
-import javafx.beans.Observable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,13 +38,19 @@ public class MenuController extends BaseController {
         scoringStrategyChoiceBox.getSelectionModel()
                 .selectedItemProperty()
                 .addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) ->
-                        contextService.setScoringStrategy(newValue));
+                        contextService.setScoringStrategyName(newValue));
 
         questionChoiceStrategyChoiceBox.setItems(menuService.getQuestionChoiceStrategies());
         questionChoiceStrategyChoiceBox.getSelectionModel()
                 .selectedItemProperty()
                 .addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) ->
-                        contextService.setQuestionChoiceStrategy(newValue));
+                        contextService.setQuestionChoiceStrategyName(newValue));
+
+        fileName.set(contextService.getTestFileName().orElse(""));
+        scoringStrategyChoiceBox.getSelectionModel()
+                .select(contextService.getScoringStrategyName().orElse(""));
+        questionChoiceStrategyChoiceBox.getSelectionModel()
+                .select(contextService.getQuestionChoiceStrategyName().orElse(""));
     }
 
     @Autowired

@@ -12,8 +12,8 @@ public class AnsweredQuestion extends Question {
     @FXML
     private ObservableSet<Answer> answersMarked;
 
-    public AnsweredQuestion(String question, List<Answer> answers, Set<Answer> answersMarked) {
-        super(question, answers);
+    public AnsweredQuestion(Question question, Set<Answer> answersMarked) {
+        super(question.getQuestion(), question.getAnswers());
         this.answersMarked = FXCollections.observableSet(answersMarked);
     }
 

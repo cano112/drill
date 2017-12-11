@@ -25,14 +25,16 @@ public class AppContext {
     private ObservableList<Question> questions;
     private StringProperty scoringStrategy;
     private StringProperty questionChoiceStrategy;
+    private ObjectProperty<GameStatistics> gameStatistics;
 
     public AppContext() {
         this.pathToTestFile = new SimpleStringProperty("");
         this.test = new SimpleObjectProperty<>(new Test(new ArrayList<>()));
         this.currentQuestionIndex = new SimpleIntegerProperty(-1);
         this.questions = FXCollections.observableList(new ArrayList<>());
-        this.scoringStrategy = new SimpleStringProperty();
-        this.questionChoiceStrategy = new SimpleStringProperty();
+        this.scoringStrategy = new SimpleStringProperty("");
+        this.questionChoiceStrategy = new SimpleStringProperty("");
+        this.gameStatistics = new SimpleObjectProperty<>(new GameStatistics());
     }
 
     public String getPathToTestFile() {
@@ -101,5 +103,17 @@ public class AppContext {
 
     public void setQuestionChoiceStrategy(String questionChoiceStrategy) {
         this.questionChoiceStrategy.set(questionChoiceStrategy);
+    }
+
+    public GameStatistics getGameStatistics() {
+        return gameStatistics.get();
+    }
+
+    public ObjectProperty<GameStatistics> gameStatisticsProperty() {
+        return gameStatistics;
+    }
+
+    public void setGameStatistics(GameStatistics gameStatistics) {
+        this.gameStatistics.set(gameStatistics);
     }
 }

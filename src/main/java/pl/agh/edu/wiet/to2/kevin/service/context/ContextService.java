@@ -1,6 +1,7 @@
 package pl.agh.edu.wiet.to2.kevin.service.context;
 
 import pl.agh.edu.wiet.to2.kevin.model.context.AppContext;
+import pl.agh.edu.wiet.to2.kevin.model.context.GameStatistics;
 import pl.agh.edu.wiet.to2.kevin.model.questions.Question;
 import pl.agh.edu.wiet.to2.kevin.service.questions.choice.strategies.QuestionChoiceStrategy;
 import pl.agh.edu.wiet.to2.kevin.service.questions.scoring.strategies.ScoringStrategy;
@@ -14,6 +15,7 @@ public interface ContextService {
 
     List<Question> getQuestions();
     int getQuestionsCount();
+    GameStatistics getGameStatistics();
 
     Optional<String> getTestFileName();
     void setTest(String testFilePath);
@@ -21,9 +23,13 @@ public interface ContextService {
     int getCurrentQuestionIndex();
     void setCurrentQuestionIndex(int index);
 
-    void setScoringStrategy(String scoringStrategy);
+    void setScoringStrategyName(String scoringStrategy);
+    Optional<String> getScoringStrategyName();
     Optional<ScoringStrategy> getScoringStrategy();
 
-    void setQuestionChoiceStrategy(String questionChoiceStrategy);
+    void setQuestionChoiceStrategyName(String questionChoiceStrategy);
+    Optional<String> getQuestionChoiceStrategyName();
     Optional<QuestionChoiceStrategy> getQuestionChoiceStrategy();
+
+    void resetToDefault();
 }
