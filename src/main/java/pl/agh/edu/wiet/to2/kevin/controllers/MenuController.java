@@ -1,13 +1,18 @@
 package pl.agh.edu.wiet.to2.kevin.controllers;
 
+import javafx.beans.Observable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import pl.agh.edu.wiet.to2.kevin.service.context.ContextService;
 import pl.agh.edu.wiet.to2.kevin.service.context.MenuService;
 import pl.agh.edu.wiet.to2.kevin.views.resolver.ViewResolver;
 
@@ -17,14 +22,37 @@ import pl.agh.edu.wiet.to2.kevin.views.resolver.ViewResolver;
 public class MenuController extends BaseController {
 
     private final MenuService menuService;
+    private final ContextService contextService;
     private final ViewResolver viewResolver;
+
+    @FXML
+    private ChoiceBox<String> questionChoiceStrategyChoiceBox;
+
+    @FXML
+    private ChoiceBox<String> scoringStrategyChoiceBox;
 
     @FXML
     private StringProperty fileName;
 
+    @FXML
+    void initialize() {
+        scoringStrategyChoiceBox.setItems(menuService.getScoringStrategies());
+        scoringStrategyChoiceBox.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) ->
+                        contextService.setScoringStrategy(newValue));
+
+        questionChoiceStrategyChoiceBox.setItems(menuService.getQuestionChoiceStrategies());
+        questionChoiceStrategyChoiceBox.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) ->
+                        contextService.setQuestionChoiceStrategy(newValue));
+    }
+
     @Autowired
-    public MenuController(MenuService menuService, ViewResolver viewResolver) {
+    public MenuController(MenuService menuService, ContextService contextService, ViewResolver viewResolver) {
         this.menuService = menuService;
+        this.contextService = contextService;
         this.viewResolver = viewResolver;
 
         this.fileName = new SimpleStringProperty();

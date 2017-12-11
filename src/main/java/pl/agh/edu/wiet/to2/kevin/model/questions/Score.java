@@ -9,8 +9,24 @@ public class Score {
     @FXML
     private DoubleProperty scoreValue;
 
-    public Score(Double score) {
-        this.scoreValue = new SimpleDoubleProperty(score);
+    @FXML
+    private DoubleProperty maxValue;
+
+    public Score(Double scoreValue, Double maxValue) {
+        this.scoreValue = new SimpleDoubleProperty(scoreValue);
+        this.maxValue = new SimpleDoubleProperty(maxValue);
+    }
+
+    public double getMaxValue() {
+        return maxValue.get();
+    }
+
+    public DoubleProperty maxValueProperty() {
+        return maxValue;
+    }
+
+    public void setMaxValue(double maxValue) {
+        this.maxValue.set(maxValue);
     }
 
     public double getScoreValue() {

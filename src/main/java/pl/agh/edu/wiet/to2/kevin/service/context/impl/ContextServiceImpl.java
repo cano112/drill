@@ -1,17 +1,18 @@
 package pl.agh.edu.wiet.to2.kevin.service.context.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-import pl.agh.edu.wiet.to2.kevin.exceptions.parser.MismatchedInputException;
 import pl.agh.edu.wiet.to2.kevin.model.context.AppContext;
 import pl.agh.edu.wiet.to2.kevin.exceptions.parser.ParseException;
 import pl.agh.edu.wiet.to2.kevin.model.questions.Question;
 import pl.agh.edu.wiet.to2.kevin.model.questions.Test;
 import pl.agh.edu.wiet.to2.kevin.service.context.ContextService;
 import pl.agh.edu.wiet.to2.kevin.service.parser.TestParsingService;
+import pl.agh.edu.wiet.to2.kevin.service.questions.choice.strategies.QuestionChoiceStrategy;
+import pl.agh.edu.wiet.to2.kevin.service.questions.scoring.strategies.ScoringStrategy;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -22,11 +23,13 @@ public class ContextServiceImpl implements ContextService {
 
     private final TestParsingService testParsingService;
     private final AppContext appContext;
+    private final ApplicationContext ctx;
 
     @Autowired
-    public ContextServiceImpl(TestParsingService testParsingService, AppContext appContext) {
+    public ContextServiceImpl(TestParsingService testParsingService, AppContext appContext, ApplicationContext ctx) {
         this.testParsingService = testParsingService;
         this.appContext = appContext;
+        this.ctx = ctx;
     }
 
     @Override
@@ -71,6 +74,30 @@ public class ContextServiceImpl implements ContextService {
         }
         return Optional.ofNullable(name);
     }
+
+    @Override
+    public void setScoringStrategy(String scoringStrategy) {
+        appContext.setScoringStrategy(scoringStrategy);
+    }
+
+    @Override
+    public Optional<ScoringStrategy> getScoringStrategy() {
+        if(appContext.getScoringStrategy().equals("")) {
+            return Optional.empty();
+        }
+        return Optional.of((ScoringStrategy)ctx.getBean(appContext.getScoringStrategy()));
+    }
+
+    @Override
+    public void setQuestionChoiceStrategy(String questionChoiceStrategy) {
+        appContext.setQuestionChoiceStrategy(questionChoiceStrategy);
+    }
+
+    @Override
+    public Optional<QuestionChoiceStrategy> getQuestionChoiceStrategy() {
+        return Optional.of((QuestionChoiceStrategy)ctx.getBean(appContext.getQuestionChoiceStrategy()));
+    }
+
     private void resetToDefault() {
         appContext.setCurrentQuestionIndex(-1);
         appContext.setQuestions(appContext.getTest().getQuestions());

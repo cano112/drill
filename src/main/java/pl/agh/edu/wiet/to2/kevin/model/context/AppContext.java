@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import pl.agh.edu.wiet.to2.kevin.model.questions.Question;
 import pl.agh.edu.wiet.to2.kevin.model.questions.Test;
 import pl.agh.edu.wiet.to2.kevin.service.parser.TestParsingService;
+import pl.agh.edu.wiet.to2.kevin.service.questions.choice.strategies.QuestionChoiceStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +23,16 @@ public class AppContext {
     private ObjectProperty<Test> test;
     private IntegerProperty currentQuestionIndex;
     private ObservableList<Question> questions;
+    private StringProperty scoringStrategy;
+    private StringProperty questionChoiceStrategy;
 
-    @Autowired
-    public AppContext(TestParsingService testParsingService) {
+    public AppContext() {
         this.pathToTestFile = new SimpleStringProperty("");
         this.test = new SimpleObjectProperty<>(new Test(new ArrayList<>()));
         this.currentQuestionIndex = new SimpleIntegerProperty(-1);
         this.questions = FXCollections.observableList(new ArrayList<>());
+        this.scoringStrategy = new SimpleStringProperty();
+        this.questionChoiceStrategy = new SimpleStringProperty();
     }
 
     public String getPathToTestFile() {
@@ -73,5 +77,29 @@ public class AppContext {
 
     public IntegerProperty currentQuestionIndexProperty() {
         return currentQuestionIndex;
+    }
+
+    public String getScoringStrategy() {
+        return scoringStrategy.get();
+    }
+
+    public StringProperty scoringStrategyProperty() {
+        return scoringStrategy;
+    }
+
+    public void setScoringStrategy(String scoringStrategy) {
+        this.scoringStrategy.set(scoringStrategy);
+    }
+
+    public String getQuestionChoiceStrategy() {
+        return questionChoiceStrategy.get();
+    }
+
+    public StringProperty questionChoiceStrategyProperty() {
+        return questionChoiceStrategy;
+    }
+
+    public void setQuestionChoiceStrategy(String questionChoiceStrategy) {
+        this.questionChoiceStrategy.set(questionChoiceStrategy);
     }
 }

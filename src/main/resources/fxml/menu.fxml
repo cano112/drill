@@ -23,8 +23,8 @@
         </rowConstraints>
          <children>
             <Button mnemonicParsing="false" onAction="#onBrowseButtonClicked" prefHeight="25.0" prefWidth="140.0" text="Browse" GridPane.rowIndex="1" />
-            <ChoiceBox prefHeight="25.0" prefWidth="151.0" GridPane.rowIndex="2" />
-            <ChoiceBox prefWidth="150.0" GridPane.rowIndex="3" />
+            <ChoiceBox fx:id="scoringStrategyChoiceBox" prefHeight="25.0" prefWidth="151.0" GridPane.rowIndex="2" />
+            <ChoiceBox fx:id="questionChoiceStrategyChoiceBox" prefWidth="150.0" GridPane.rowIndex="3" />
             <Label prefHeight="17.0" prefWidth="227.0" text="${controller.fileName}" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
          </children>
       </GridPane>
