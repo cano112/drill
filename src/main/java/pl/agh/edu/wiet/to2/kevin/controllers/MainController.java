@@ -4,9 +4,11 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -73,6 +75,15 @@ import java.util.HashSet;
         answersListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         answersListView.setItems(getCurrentQuestion().getAnswers());
         gameStatistics.set(contextService.getGameStatistics());
+        answersListView.setCellFactory(list -> new ListCell<>() {
+            {
+                Text text = new Text();
+                text.wrappingWidthProperty().bind(list.widthProperty().subtract(15));
+                text.textProperty().bind(itemProperty().asString());
+                setPrefWidth(0);
+                setGraphic(text);
+            }
+        });
 
         // register listeners
         contextService.getContext().testProperty().addListener(observable ->

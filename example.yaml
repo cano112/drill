@@ -1,15 +1,21 @@
 questions:
-  - question: Czy Kevin jest niewinny?
+  - question: W SYSTEMIE OPERACYJNYM UNIX
     answers:
-      - answer: tak
+      - answer: Grupy użytkowników wprowadzono aby ułatwić zarządzanie użytkownikami oraz podnieść poziom bezpieczeństwa systemu.
         correct: True
-      - answer: nie
+      - answer: O możliwościach użytkownika w systemie decyduje przynależność do odpowiednich grup użytkowników
+        correct: True
+      - answer: Uprawnienia użytkownika nie zależą od tego, do jakiej grupy użytkowników on należy.
         correct: False
-  - question: A może jednak winny?
+      - answer: Wszystkie grupy użytkowników dają im jednakowe uprawnienia w systemie.
+        correct: False
+      - answer: Grupy użytkowników nie posiadają hierarchii tzn. niezależnie od przynależności do nich użytkownicy systemu posiadają takie same uprawnienia.
+        correct: False
+  - question: W SYSTEMIE PLIKÓW UNIX
     answers:
-      - answer: tak
+      - answer: Każdy plik jest opisany przez dokładnie jeden i-węzeł niezależnie od tego ile dowiązań twardych zostało dla niego utworzonych.
         correct: True
-      - answer: nie
+      - answer: Utworzenie do pliku dowiązania twardego tworzy w praktyce plik specjalnego typu którego zawartość jest ścieżką dostępu do oryginalnego pliku.
         correct: False
-      - answer: nie wiem
+      - answer: Cofnięcie prawa zapisu do pliku dla właściciela indywidualnego uniemożliwia usunięcie go.
         correct: False
