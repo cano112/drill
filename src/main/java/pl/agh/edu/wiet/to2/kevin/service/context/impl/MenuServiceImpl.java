@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+import pl.agh.edu.wiet.to2.kevin.exceptions.questions.EmptyListException;
 import pl.agh.edu.wiet.to2.kevin.service.context.ContextService;
 import pl.agh.edu.wiet.to2.kevin.service.context.MenuService;
 import pl.agh.edu.wiet.to2.kevin.service.questions.choice.strategies.QuestionChoiceStrategy;
@@ -52,5 +53,10 @@ public class MenuServiceImpl implements MenuService {
         List<String> names = new ArrayList<>();
         ctx.getBeansOfType(QuestionChoiceStrategy.class).forEach((k, v) -> names.add(v.getName()));
         return FXCollections.observableArrayList(names);
+    }
+
+    @Override public void validate() {
+        if (contextService.getQuestions().size() == 0)
+            throw new EmptyListException("Empty list: no questions parsed");
     }
 }

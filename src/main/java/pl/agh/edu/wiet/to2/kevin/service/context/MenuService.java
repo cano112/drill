@@ -9,4 +9,6 @@ public interface MenuService {
     Optional<String> pickFile(Stage stage);
     ObservableList<String> getScoringStrategies();
     ObservableList<String> getQuestionChoiceStrategies();
+
+    void validate();
  }

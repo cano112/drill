@@ -72,6 +72,7 @@ public class MenuController extends BaseController {
     }
 
     public void onStartButtonClicked(ActionEvent actionEvent) {
+        menuService.validate();
         viewResolver.showView(getStage().orElse(new Stage()), "mainView");
     }
 
