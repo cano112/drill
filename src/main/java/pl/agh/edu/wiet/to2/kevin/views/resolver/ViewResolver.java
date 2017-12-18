@@ -10,8 +10,11 @@ import pl.agh.edu.wiet.to2.kevin.views.View;
 @Component
 public class ViewResolver {
 
-    @Autowired
-    private ApplicationContext ctx;
+    private final ApplicationContext ctx;
+
+    @Autowired public ViewResolver(ApplicationContext ctx) {
+        this.ctx = ctx;
+    }
 
     public void showView(Stage stage, String viewName) {
         try {
