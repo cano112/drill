@@ -34,23 +34,28 @@ public class MenuController extends BaseController {
 
     @FXML
     void initialize() {
+        // initialize choice boxes
         scoringStrategyChoiceBox.setItems(menuService.getScoringStrategies());
-        scoringStrategyChoiceBox.getSelectionModel()
-                .selectedItemProperty()
-                .addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) ->
-                        contextService.setScoringStrategyName(newValue));
-
         questionChoiceStrategyChoiceBox.setItems(menuService.getQuestionChoiceStrategies());
+
+        // add listeners
+        scoringStrategyChoiceBox.getSelectionModel().selectedItemProperty().addListener(
+                (ObservableValue<? extends String> observable, String oldValue, String newValue) -> contextService
+                        .setScoringStrategyName(newValue));
+
         questionChoiceStrategyChoiceBox.getSelectionModel()
                 .selectedItemProperty()
                 .addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) ->
                         contextService.setQuestionChoiceStrategyName(newValue));
 
+        // set fields with values from context
         fileName.set(contextService.getTestFileName().orElse(""));
+
         scoringStrategyChoiceBox.getSelectionModel()
-                .select(contextService.getScoringStrategyName().orElse(""));
-        questionChoiceStrategyChoiceBox.getSelectionModel()
-                .select(contextService.getQuestionChoiceStrategyName().orElse(""));
+                .select(contextService.getScoringStrategyName().orElse(menuService.getScoringStrategies().get(0)));
+
+        questionChoiceStrategyChoiceBox.getSelectionModel().select(contextService.getQuestionChoiceStrategyName()
+                .orElse(menuService.getQuestionChoiceStrategies().get(0)));
     }
 
     @Autowired

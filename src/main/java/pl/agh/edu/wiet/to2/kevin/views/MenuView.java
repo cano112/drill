@@ -2,12 +2,13 @@ package pl.agh.edu.wiet.to2.kevin.views;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import pl.agh.edu.wiet.to2.kevin.controllers.BaseController;
 import pl.agh.edu.wiet.to2.kevin.fx.SpringFXMLLoader;
 
-@Component
+@Component @Qualifier("menuView")
 public class MenuView extends View {
 
     public MenuView(ApplicationContext ctx) {
