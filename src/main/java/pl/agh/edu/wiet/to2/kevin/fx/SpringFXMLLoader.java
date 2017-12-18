@@ -1,14 +1,16 @@
 package pl.agh.edu.wiet.to2.kevin.fx;
 
 import javafx.fxml.FXMLLoader;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-import java.net.URL;
-// TODO put to spring context
+@Component @Scope("prototype") @Qualifier("fxmlLoader")
 public class SpringFXMLLoader extends FXMLLoader {
 
-    public SpringFXMLLoader(URL location, ApplicationContext ctx) {
-        super(location);
+    @Autowired public SpringFXMLLoader(ApplicationContext ctx) {
         this.setControllerFactory(ctx::getBean);
     }
 }

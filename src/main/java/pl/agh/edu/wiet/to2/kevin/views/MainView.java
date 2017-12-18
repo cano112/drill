@@ -2,14 +2,15 @@ package pl.agh.edu.wiet.to2.kevin.views;
 
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import pl.agh.edu.wiet.to2.kevin.fx.SpringFXMLLoader;
 
-@Component @Qualifier("mainView")
+@Component @Scope("prototype") @Qualifier("mainView")
 public class MainView extends View {
 
-    public MainView(ApplicationContext ctx) {
-        super(ctx);
+    public MainView(SpringFXMLLoader fxmlLoader) {
+        super(fxmlLoader);
     }
 
     public void start(Stage stage) throws Exception {

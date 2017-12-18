@@ -1,25 +1,19 @@
 package pl.agh.edu.wiet.to2.kevin.views;
 
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import pl.agh.edu.wiet.to2.kevin.controllers.BaseController;
 import pl.agh.edu.wiet.to2.kevin.fx.SpringFXMLLoader;
 
-@Component @Qualifier("summaryView")
+@Component @Scope("prototype") @Qualifier("summaryView")
 public class SummaryView extends View {
 
-    public SummaryView(ApplicationContext ctx) {
-        super(ctx);
+    public SummaryView(SpringFXMLLoader fxmlLoader) {
+        super(fxmlLoader);
     }
 
     public void start(Stage stage) throws Exception {
-        SpringFXMLLoader loader = new SpringFXMLLoader(getClass().getResource("/fxml/summary.fxml"), ctx);
-        Scene scene = new Scene(loader.load(), 600, 400);
-        ((BaseController) loader.getController()).setStage(stage);
-        stage.setScene(scene);
-        stage.show();
+        startView(stage, "/fxml/summary.fxml", 600, 400);
     }
 }
