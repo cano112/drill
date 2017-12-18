@@ -13,6 +13,6 @@ import pl.agh.edu.wiet.to2.kevin.views.resolver.SpringFXMLLoader;
     }
 
     public void start(Stage stage) throws Exception {
-        startView(stage, "/fxml/summary.fxml", 600, 400);
+        startView(stage, "/fxml/summary.fxml", 300, 200);
     }
 }

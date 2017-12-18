@@ -19,3 +19,24 @@ questions:
         correct: False
       - answer: Cofnięcie prawa zapisu do pliku dla właściciela indywidualnego uniemożliwia usunięcie go.
         correct: False
+  - question: PROCESY
+    answers:
+      - answer: Zmiana trybu pracy systemu między trybem użytkownika a trybem jądra lub odwrotnie jest nazywana zmianą kontekstu
+        correct: False
+      - answer: Komenda kill służy do wysyłania do procesu sygnału
+        correct: True
+      - answer: Wartość parametru NICE na podstawie m.in. której wyznaczana jest wartość priorytetu jest ustalana dla nowo uruchamianego procesu przez jądro systemu operacyjnego na podstawie średniego obciążenia systemu liczonego od momentu inicjalizacji systemu operacyjnego
+        correct: False
+  - question: Czy w trakcie wykonywanie dowolnego procesu tylko jego właściciel indywidualny oraz użytkownik root mają możliwość jedynie pośredniej zmiany wartości priorytetu poprzez zmianę wartości parametru NICE?
+    answers:
+      - answer: Tak
+        correct: True
+      - answer: Nie
+        correct: False
+  - question: Czy każdy proces, z wyjątkiem procesu o numerze 0, ma jeden proces będący jego rodzicem ale może posiadać wiele procesów potomnych?
+    answers:
+      - answer: Tak
+        correct: True
+      - answer: Nie
+        correct: False
+
