@@ -20,8 +20,7 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Service
-public class ContextServiceImpl implements ContextService {
+@Service public final class ContextServiceImpl implements ContextService {
 
     private final TestParsingService testParsingService;
     private final AppContext appContext;

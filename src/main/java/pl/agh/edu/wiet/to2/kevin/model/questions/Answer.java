@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 
-public class Answer {
+public final class Answer {
 
     @FXML private final StringProperty answer;
 

@@ -7,8 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component @Scope("prototype") @Qualifier("fxmlLoader")
-public class SpringFXMLLoader extends FXMLLoader {
+@Component @Scope("prototype") @Qualifier("fxmlLoader") public final class SpringFXMLLoader extends FXMLLoader {
 
     @Autowired public SpringFXMLLoader(ApplicationContext ctx) {
         this.setControllerFactory(ctx::getBean);

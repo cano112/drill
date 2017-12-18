@@ -6,8 +6,7 @@ import pl.agh.edu.wiet.to2.kevin.model.context.GameStatistics;
 import pl.agh.edu.wiet.to2.kevin.model.questions.stats.StatsChange;
 import pl.agh.edu.wiet.to2.kevin.service.context.ContextService;
 
-@Service
-public class StatsServiceImpl implements StatsService {
+@Service public final class StatsServiceImpl implements StatsService {
 
     private final ContextService contextService;
 

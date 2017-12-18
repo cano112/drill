@@ -1,6 +1,6 @@
 package pl.agh.edu.wiet.to2.kevin.model.questions.stats;
 
-public class StatsChange {
+public final class StatsChange {
     private final double points;
     private final boolean correct;
     private final boolean partiallyCorrect;

@@ -1,6 +1,6 @@
 package pl.agh.edu.wiet.to2.kevin.model.parser;
 
-public class AnswerDTO {
+public final class AnswerDTO {
     private String answer;
     private boolean correct;
 

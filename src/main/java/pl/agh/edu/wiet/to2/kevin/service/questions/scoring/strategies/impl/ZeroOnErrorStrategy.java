@@ -7,8 +7,7 @@ import pl.agh.edu.wiet.to2.kevin.service.questions.scoring.strategies.BaseScorin
 
 @Service
 @Qualifier("zeroOnErrorScoringStrategy")
-@Scope("singleton")
-public class ZeroOnErrorStrategy extends BaseScoringStrategy {
+@Scope("singleton") public final class ZeroOnErrorStrategy extends BaseScoringStrategy {
 
     private static final String STRATEGY_NAME = "Zero on error";
 

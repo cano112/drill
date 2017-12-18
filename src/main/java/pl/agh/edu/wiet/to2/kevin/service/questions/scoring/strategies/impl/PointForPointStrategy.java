@@ -7,8 +7,7 @@ import pl.agh.edu.wiet.to2.kevin.service.questions.scoring.strategies.BaseScorin
 
 @Service
 @Qualifier("pointForPointScoringStrategy")
-@Scope("singleton")
-public class PointForPointStrategy extends BaseScoringStrategy {
+@Scope("singleton") public final class PointForPointStrategy extends BaseScoringStrategy {
 
     private static final String STRATEGY_NAME = "Point for point";
 

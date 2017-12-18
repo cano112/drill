@@ -4,7 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 
-public class QuestionFeedback {
+public final class QuestionFeedback {
 
     @FXML private final IntegerProperty mark;
 

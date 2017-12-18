@@ -7,8 +7,7 @@ import pl.agh.edu.wiet.to2.kevin.service.questions.scoring.strategies.BaseScorin
 
 @Service
 @Qualifier("fractionalWithSignScoringStrategy")
-@Scope("singleton")
-public class FractionalWithSignStrategy extends BaseScoringStrategy {
+@Scope("singleton") public final class FractionalWithSignStrategy extends BaseScoringStrategy {
 
     private static final String STRATEGY_NAME = "Fractional point";
 

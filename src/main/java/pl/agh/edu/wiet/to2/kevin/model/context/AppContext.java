@@ -17,8 +17,7 @@ import java.util.List;
 import java.util.Queue;
 
 @Component
-@Scope("singleton")
-public class AppContext {
+@Scope("singleton") public final class AppContext {
 
     private StringProperty pathToTestFile;
     private ObjectProperty<Test> test;

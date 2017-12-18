@@ -16,8 +16,7 @@ import pl.agh.edu.wiet.to2.kevin.views.resolver.ViewResolver;
 
 
 @Controller
-@Scope("prototype")
-public class MenuController extends BaseController {
+@Scope("prototype") public final class MenuController extends BaseController {
 
     private final MenuService menuService;
     private final ContextService contextService;

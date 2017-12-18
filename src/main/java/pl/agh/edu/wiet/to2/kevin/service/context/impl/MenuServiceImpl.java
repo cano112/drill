@@ -18,8 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
-public class MenuServiceImpl implements MenuService {
+@Component public final class MenuServiceImpl implements MenuService {
 
     private final ContextService contextService;
     private final FileChooser fileChooser;

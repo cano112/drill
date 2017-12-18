@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 
-public class GameStatistics {
+public final class GameStatistics {
 
     @FXML
     private DoubleProperty points;

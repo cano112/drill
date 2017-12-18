@@ -7,7 +7,8 @@ import pl.agh.edu.wiet.to2.kevin.exceptions.BaseApplicationException;
 
 import java.lang.reflect.InvocationTargetException;
 
-@Controller @Qualifier("exceptionHandler") public class ExceptionHandler implements Thread.UncaughtExceptionHandler {
+@Controller @Qualifier("exceptionHandler") public final class ExceptionHandler
+        implements Thread.UncaughtExceptionHandler {
 
     @Override public void uncaughtException(Thread t, Throwable e) {
 

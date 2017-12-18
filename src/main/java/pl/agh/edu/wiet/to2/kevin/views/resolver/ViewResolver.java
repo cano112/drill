@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
 import pl.agh.edu.wiet.to2.kevin.exceptions.ViewResolveException;
 import pl.agh.edu.wiet.to2.kevin.views.View;
 
-@Component
-public class ViewResolver {
+@Component public final class ViewResolver {
 
     private final ApplicationContext ctx;
 

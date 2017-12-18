@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@Service @Qualifier("shuffledQuestionsStrategy") @Scope("singleton") public class RandomQuestionStrategy
+@Service @Qualifier("shuffledQuestionsStrategy") @Scope("singleton") public final class RandomQuestionStrategy
         extends BaseQuestionChoiceStrategy {
 
     private static final String STRATEGY_NAME = "Questions shuffled";

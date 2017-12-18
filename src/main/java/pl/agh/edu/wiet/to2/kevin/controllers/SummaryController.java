@@ -13,8 +13,7 @@ import pl.agh.edu.wiet.to2.kevin.service.context.ContextService;
 import pl.agh.edu.wiet.to2.kevin.views.resolver.ViewResolver;
 
 @Controller
-@Scope("prototype")
-public class SummaryController extends BaseController {
+@Scope("prototype") public final class SummaryController extends BaseController {
 
     private final ContextService contextService;
     private final ViewResolver viewResolver;

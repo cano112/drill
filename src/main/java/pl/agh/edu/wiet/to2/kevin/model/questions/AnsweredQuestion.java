@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 
 import java.util.Set;
 
-public class AnsweredQuestion {
+public final class AnsweredQuestion {
 
     @FXML private final ObjectProperty<Question> question;
 

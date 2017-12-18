@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 
 import java.util.List;
 
-public class Test {
+public final class Test {
 
     @FXML private final ObservableList<Question> questions;
 

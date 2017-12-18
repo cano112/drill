@@ -4,7 +4,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 
-public class Score {
+public final class Score {
 
     @FXML private final DoubleProperty scoreValue;
 

@@ -1,11 +1,9 @@
 package pl.agh.edu.wiet.to2.kevin.model.parser;
 
-import pl.agh.edu.wiet.to2.kevin.model.parser.QuestionDTO;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestDTO {
+public final class TestDTO {
     private List<QuestionDTO> questions;
 
     public TestDTO() {

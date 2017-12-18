@@ -26,8 +26,7 @@ import pl.agh.edu.wiet.to2.kevin.views.resolver.ViewResolver;
 import java.util.HashSet;
 
 @Controller
-@Scope("prototype")
-public class MainController extends BaseController {
+@Scope("prototype") public final class MainController extends BaseController {
 
     private final ContextService contextService;
     private final ViewResolver viewResolver;

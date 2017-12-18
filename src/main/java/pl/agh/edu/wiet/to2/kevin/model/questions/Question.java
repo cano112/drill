@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Question {
+public final class Question {
 
     @FXML private final StringProperty question;
 
