@@ -10,12 +10,14 @@ import pl.agh.edu.wiet.to2.kevin.service.questions.scoring.strategies.BaseScorin
 @Scope("singleton")
 public class PointForPointStrategy extends BaseScoringStrategy {
 
+    private static final String STRATEGY_NAME = "Point for point";
+
     public PointForPointStrategy() {
         super(false, true, false, 1, -1);
     }
 
     @Override
     public String getName() {
-        return "Point for point";
+        return STRATEGY_NAME;
     }
 }

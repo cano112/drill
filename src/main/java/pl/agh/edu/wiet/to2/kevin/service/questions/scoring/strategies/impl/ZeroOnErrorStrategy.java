@@ -10,12 +10,14 @@ import pl.agh.edu.wiet.to2.kevin.service.questions.scoring.strategies.BaseScorin
 @Scope("singleton")
 public class ZeroOnErrorStrategy extends BaseScoringStrategy {
 
+    private static final String STRATEGY_NAME = "Zero on error";
+
     public ZeroOnErrorStrategy() {
         super(true, false, false, 1, 0);
     }
 
     @Override
     public String getName() {
-        return "Zero on error";
+        return STRATEGY_NAME;
     }
 }

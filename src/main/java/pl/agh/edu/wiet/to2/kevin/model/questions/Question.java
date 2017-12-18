@@ -6,15 +6,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Question {
 
-    @FXML
-    private StringProperty question;
+    @FXML private final StringProperty question;
 
-    @FXML
-    private ObservableList<Answer> answers;
+    @FXML private final ObservableList<Answer> answers;
 
     public Question(String question, List<Answer> answers) {
         this.question = new SimpleStringProperty(question);
@@ -29,10 +28,6 @@ public class Question {
         return question;
     }
 
-    public void setQuestion(String question) {
-        this.question.set(question);
-    }
-
     public ObservableList<Answer> getAnswers() {
         return answers;
     }
@@ -41,8 +36,8 @@ public class Question {
         return answers.filtered(Answer::isCorrect);
     }
 
-    public void setAnswers(List<Answer> answers) {
-        this.answers.setAll(answers);
+    public static Question empty() {
+        return new Question("", new ArrayList<>());
     }
 
     @Override

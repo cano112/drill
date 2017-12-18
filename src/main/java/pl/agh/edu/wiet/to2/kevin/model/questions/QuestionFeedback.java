@@ -6,8 +6,7 @@ import javafx.fxml.FXML;
 
 public class QuestionFeedback {
 
-    @FXML
-    private IntegerProperty mark;
+    @FXML private final IntegerProperty mark;
 
     public QuestionFeedback(int markValue) {
         this.mark = new SimpleIntegerProperty(markValue);
@@ -21,7 +20,18 @@ public class QuestionFeedback {
         return mark;
     }
 
-    public void setMark(int mark) {
-        this.mark.set(mark);
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        QuestionFeedback that = (QuestionFeedback) o;
+
+        return mark.equals(that.mark);
+    }
+
+    @Override public int hashCode() {
+        return mark.hashCode();
     }
 }

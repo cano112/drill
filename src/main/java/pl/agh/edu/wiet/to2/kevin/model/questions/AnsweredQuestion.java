@@ -1,22 +1,18 @@
 package pl.agh.edu.wiet.to2.kevin.model.questions;
 
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 
-import java.util.List;
 import java.util.Set;
 
 public class AnsweredQuestion extends Question {
 
-    @FXML
-    private ObservableSet<Answer> answersMarked;
+    @FXML private final ObservableSet<Answer> answersMarked;
 
-    @FXML
-    private ObjectProperty<QuestionFeedback> feedback;
+    @FXML private final ObjectProperty<QuestionFeedback> feedback;
 
     public AnsweredQuestion(Question question, Set<Answer> answersMarked) {
         super(question.getQuestion(), question.getAnswers());
@@ -30,19 +26,11 @@ public class AnsweredQuestion extends Question {
         return answersMarked;
     }
 
-    public void setAnswersMarked(ObservableSet<Answer> answersMarked) {
-        this.answersMarked = answersMarked;
-    }
-
     public QuestionFeedback getFeedback() {
         return feedback.get();
     }
 
     public ObjectProperty<QuestionFeedback> feedbackProperty() {
         return feedback;
-    }
-
-    public void setFeedback(QuestionFeedback feedback) {
-        this.feedback.set(feedback);
     }
 }

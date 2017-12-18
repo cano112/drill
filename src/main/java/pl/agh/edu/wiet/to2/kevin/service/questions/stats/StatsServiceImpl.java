@@ -17,15 +17,34 @@ public class StatsServiceImpl implements StatsService {
     }
 
     @Override public void applyChangeToContext(StatsChange statsChange) {
+        addPoints(statsChange.getPoints());
+
+        if (statsChange.isCorrect())
+            incCorrectAnswers();
+        else if (statsChange.isPartiallyCorrect())
+            incPartiallyCorrectAnswers();
+                else if (statsChange.isWrong())
+            incWrongAnswers();
+
+    }
+
+    private void incCorrectAnswers() {
         GameStatistics gameStats = contextService.getGameStatistics();
+        gameStats.setCorrectAnswers(gameStats.getCorrectAnswers() + 1);
+    }
 
-        gameStats.addPoints(statsChange.getPoints());
+    private void incPartiallyCorrectAnswers() {
+        GameStatistics gameStats = contextService.getGameStatistics();
+        gameStats.setPartiallyCorrectAnswers(gameStats.getPartiallyCorrectAnswers() + 1);
+    }
 
-        if(statsChange.isCorrect()) gameStats.incCorrectAnswers();
-        else
-            if(statsChange.isPartiallyCorrect()) gameStats.incPartiallyCorrectAnswers();
-                else
-                    if(statsChange.isWrong()) gameStats.incWrongAnswers();
+    private void incWrongAnswers() {
+        GameStatistics gameStats = contextService.getGameStatistics();
+        gameStats.setWrongAnswers(gameStats.getWrongAnswers() + 1);
+    }
 
+    private void addPoints(Double points) {
+        GameStatistics gameStats = contextService.getGameStatistics();
+        gameStats.setPoints(gameStats.getPoints() + points);
     }
 }

@@ -6,6 +6,7 @@ import pl.agh.edu.wiet.to2.kevin.model.questions.stats.Score;
 import pl.agh.edu.wiet.to2.kevin.model.questions.stats.StatsChange;
 
 public abstract class BaseScoringStrategy implements ScoringStrategy {
+
     private boolean zeroOnError;
     private boolean resultCanBeNegative;
     private boolean fractionalPoints;

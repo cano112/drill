@@ -6,6 +6,9 @@ import pl.agh.edu.wiet.to2.kevin.service.questions.choice.strategies.QuestionCho
 import java.util.Optional;
 
 public class RandomQuestionStrategy implements QuestionChoiceStrategy {
+
+    private static final String STRATEGY_NAME = "Random question strategy";
+
     @Override
     public Optional<Question> getNextQuestion() {
 
@@ -15,6 +18,6 @@ public class RandomQuestionStrategy implements QuestionChoiceStrategy {
 
     @Override
     public String getName() {
-        return "Random question strategy";
+        return STRATEGY_NAME;
     }
 }

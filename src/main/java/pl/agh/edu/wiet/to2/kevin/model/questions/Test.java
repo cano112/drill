@@ -8,8 +8,7 @@ import java.util.List;
 
 public class Test {
 
-    @FXML
-    private ObservableList<Question> questions;
+    @FXML private final ObservableList<Question> questions;
 
     public Test(List<Question> questions) {
         this.questions = FXCollections.observableList(questions);
@@ -17,10 +16,6 @@ public class Test {
 
     public ObservableList<Question> getQuestions() {
         return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions.setAll(questions);
     }
 
     @Override

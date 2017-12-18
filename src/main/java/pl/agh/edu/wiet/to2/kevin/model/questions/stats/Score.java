@@ -6,11 +6,9 @@ import javafx.fxml.FXML;
 
 public class Score {
 
-    @FXML
-    private DoubleProperty scoreValue;
+    @FXML private final DoubleProperty scoreValue;
 
-    @FXML
-    private DoubleProperty maxValue;
+    @FXML private final DoubleProperty maxValue;
 
     public Score(Double scoreValue, Double maxValue) {
         this.scoreValue = new SimpleDoubleProperty(scoreValue);
@@ -25,10 +23,6 @@ public class Score {
         return maxValue;
     }
 
-    public void setMaxValue(double maxValue) {
-        this.maxValue.set(maxValue);
-    }
-
     public double getScoreValue() {
         return scoreValue.get();
     }
@@ -37,7 +31,4 @@ public class Score {
         return scoreValue;
     }
 
-    public void setScoreValue(double scoreValue) {
-        this.scoreValue.set(scoreValue);
-    }
 }

@@ -10,12 +10,14 @@ import pl.agh.edu.wiet.to2.kevin.service.questions.scoring.strategies.BaseScorin
 @Scope("singleton")
 public class FractionalWithSignStrategy extends BaseScoringStrategy {
 
+    private static final String STRATEGY_NAME = "Fractional point";
+
     public FractionalWithSignStrategy() {
         super(false, true, true, 1, -1);
     }
 
     @Override
     public String getName() {
-        return "Fractional point";
+        return STRATEGY_NAME;
     }
 }

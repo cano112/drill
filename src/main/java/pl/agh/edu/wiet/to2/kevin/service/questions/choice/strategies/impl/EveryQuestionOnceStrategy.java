@@ -9,7 +9,6 @@ import pl.agh.edu.wiet.to2.kevin.model.questions.Question;
 import pl.agh.edu.wiet.to2.kevin.service.context.ContextService;
 import pl.agh.edu.wiet.to2.kevin.service.questions.choice.strategies.QuestionChoiceStrategy;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Service
@@ -17,6 +16,7 @@ import java.util.Optional;
 @Scope("singleton")
 public class EveryQuestionOnceStrategy implements QuestionChoiceStrategy {
 
+    private static final String STRATEGY_NAME = "Every question once";
     private final ContextService contextService;
 
     @Autowired
@@ -44,6 +44,6 @@ public class EveryQuestionOnceStrategy implements QuestionChoiceStrategy {
 
     @Override
     public String getName() {
-        return "ala";
+        return STRATEGY_NAME;
     }
 }

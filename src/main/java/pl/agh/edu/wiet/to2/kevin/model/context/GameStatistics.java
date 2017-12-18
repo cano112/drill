@@ -74,20 +74,4 @@ public class GameStatistics {
     public void setPoints(double points) {
         this.points.set(points);
     }
-
-    public void incCorrectAnswers() {
-        this.correctAnswers.set(this.correctAnswers.get() + 1);
-    }
-
-    public void incPartiallyCorrectAnswers() {
-        this.partiallyCorrectAnswers.set(this.partiallyCorrectAnswers.get() + 1);
-    }
-
-    public void incWrongAnswers() {
-        this.wrongAnswers.set(this.wrongAnswers.get() + 1);
-    }
-
-    public void addPoints(Double points) {
-        this.points.set(this.points.get() + points);
-    }
 }

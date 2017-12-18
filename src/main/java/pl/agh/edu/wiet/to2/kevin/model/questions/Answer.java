@@ -8,11 +8,9 @@ import javafx.fxml.FXML;
 
 public class Answer {
 
-    @FXML
-    protected StringProperty answer;
+    @FXML private final StringProperty answer;
 
-    @FXML
-    protected BooleanProperty correct;
+    @FXML private final BooleanProperty correct;
 
     public Answer(String answer, boolean correct) {
         this.answer = new SimpleStringProperty(answer);
@@ -26,20 +24,12 @@ public class Answer {
         return correct;
     }
 
-    public void setCorrect(boolean correct) {
-        this.correct.set(correct);
-    }
-
     public String getAnswer() {
         return answer.get();
     }
 
     public StringProperty answerProperty() {
         return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer.set(answer);
     }
 
     @Override

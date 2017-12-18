@@ -51,7 +51,7 @@ public class MainController extends BaseController {
         this.viewResolver = viewResolver;
         this.statsService = statsService;
 
-        this.currentQuestion = new SimpleObjectProperty<>(new Question("", new ArrayList<>()));
+        this.currentQuestion = new SimpleObjectProperty<>(Question.empty());
         this.answersListView = new ListView<>();
         this.gameStatistics = new SimpleObjectProperty<>(new GameStatistics());
     }
