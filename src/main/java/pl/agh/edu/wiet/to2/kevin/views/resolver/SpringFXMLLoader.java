@@ -1,4 +1,4 @@
-package pl.agh.edu.wiet.to2.kevin.fx;
+package pl.agh.edu.wiet.to2.kevin.views.resolver;
 
 import javafx.fxml.FXMLLoader;
 import org.springframework.beans.factory.annotation.Autowired;

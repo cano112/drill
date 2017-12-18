@@ -4,7 +4,7 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import pl.agh.edu.wiet.to2.kevin.fx.SpringFXMLLoader;
+import pl.agh.edu.wiet.to2.kevin.views.resolver.SpringFXMLLoader;
 
 @Component @Scope("prototype") @Qualifier("menuView")
 public class MenuView extends View {

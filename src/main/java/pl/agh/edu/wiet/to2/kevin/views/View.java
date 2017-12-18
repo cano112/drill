@@ -4,7 +4,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.agh.edu.wiet.to2.kevin.controllers.BaseController;
-import pl.agh.edu.wiet.to2.kevin.fx.SpringFXMLLoader;
+import pl.agh.edu.wiet.to2.kevin.views.resolver.SpringFXMLLoader;
 
 public abstract class View {
 
