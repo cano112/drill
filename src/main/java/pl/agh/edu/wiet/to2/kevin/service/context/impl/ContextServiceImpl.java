@@ -3,8 +3,8 @@ package pl.agh.edu.wiet.to2.kevin.service.context.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-import pl.agh.edu.wiet.to2.kevin.model.context.AppContext;
 import pl.agh.edu.wiet.to2.kevin.exceptions.parser.ParseException;
+import pl.agh.edu.wiet.to2.kevin.model.context.AppContext;
 import pl.agh.edu.wiet.to2.kevin.model.context.GameStatistics;
 import pl.agh.edu.wiet.to2.kevin.model.questions.Question;
 import pl.agh.edu.wiet.to2.kevin.model.questions.Test;
@@ -13,10 +13,9 @@ import pl.agh.edu.wiet.to2.kevin.service.parser.TestParsingService;
 import pl.agh.edu.wiet.to2.kevin.service.questions.choice.strategies.QuestionChoiceStrategy;
 import pl.agh.edu.wiet.to2.kevin.service.questions.scoring.strategies.ScoringStrategy;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -60,16 +59,6 @@ public class ContextServiceImpl implements ContextService {
     @Override
     public GameStatistics getGameStatistics() {
         return appContext.getGameStatistics();
-    }
-
-    @Override
-    public int getCurrentQuestionIndex() {
-        return appContext.getCurrentQuestionIndex();
-    }
-
-    @Override
-    public void setCurrentQuestionIndex(int index) {
-        appContext.setCurrentQuestionIndex(index);
     }
 
     @Override
@@ -133,9 +122,23 @@ public class ContextServiceImpl implements ContextService {
                 .findFirst();
     }
 
+    @Override public Optional<Question> getNextQuestion() {
+        return Optional.ofNullable(appContext.getQuestionsQueue().poll());
+    }
+
+    @Override public void addToQuestionQueue(Question question) {
+        appContext.getQuestionsQueue().add(question);
+    }
+
+    @Override public void addToQuestionQueue(Collection<? extends Question> questions) {
+        appContext.getQuestionsQueue().addAll(questions);
+    }
+
     public void resetToDefault() {
-        appContext.setCurrentQuestionIndex(-1);
+        appContext.getQuestionsQueue().clear();
         appContext.setQuestions(appContext.getTest().getQuestions());
+
+        //TODO replace with GameStatistics.clear()
         appContext.setGameStatistics(new GameStatistics());
     }
 

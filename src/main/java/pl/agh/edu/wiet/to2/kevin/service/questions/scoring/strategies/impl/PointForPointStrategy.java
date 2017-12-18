@@ -13,11 +13,6 @@ public class PointForPointStrategy extends BaseScoringStrategy {
     private static final String STRATEGY_NAME = "Point for point";
 
     public PointForPointStrategy() {
-        super(false, true, false, 1, -1);
-    }
-
-    @Override
-    public String getName() {
-        return STRATEGY_NAME;
+        super(false, true, false, 1, -1, STRATEGY_NAME);
     }
 }

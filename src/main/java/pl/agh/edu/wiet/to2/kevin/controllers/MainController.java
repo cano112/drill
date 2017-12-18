@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -22,7 +23,6 @@ import pl.agh.edu.wiet.to2.kevin.service.questions.scoring.strategies.ScoringStr
 import pl.agh.edu.wiet.to2.kevin.service.questions.stats.StatsService;
 import pl.agh.edu.wiet.to2.kevin.views.resolver.ViewResolver;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 @Controller
@@ -45,6 +45,8 @@ public class MainController extends BaseController {
     @FXML
     private ObjectProperty<GameStatistics> gameStatistics;
 
+    @FXML private ToggleGroup feedback;
+
     @Autowired
     public MainController(ContextService contextService, ViewResolver viewResolver, StatsService statsService) {
         this.contextService = contextService;
@@ -58,32 +60,41 @@ public class MainController extends BaseController {
 
     @FXML
     private void initialize() {
-        this.answersListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        // inject strategies and initialize them
         this.scoringStrategy = contextService.getScoringStrategy()
                 .orElseThrow(() -> new IncoherentStateException("No scoring strategy set"));
 
         this.questionChoiceStrategy = contextService.getQuestionChoiceStrategy()
                 .orElseThrow(() -> new IncoherentStateException("No question choice strategy set"));
 
+        questionChoiceStrategy.initialize();
+
+        // initialize view properties
+        answersListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         answersListView.setItems(getCurrentQuestion().getAnswers());
         gameStatistics.set(contextService.getGameStatistics());
 
+        // register listeners
         contextService.getContext().testProperty().addListener(observable ->
                 currentQuestion.set(getNextQuestion()));
         currentQuestionProperty().addListener((observable, oldValue, newValue) ->
                 answersListView.setItems(newValue.getAnswers()));
 
+        // get first question
         currentQuestion.set(getNextQuestion());
     }
 
     public void onNextButtonClicked(ActionEvent actionEvent) {
 
         AnsweredQuestion answeredQuestion = new AnsweredQuestion(currentQuestion.get(),
-                new HashSet<>(answersListView.getSelectionModel().getSelectedItems()));
+                new HashSet<>(answersListView.getSelectionModel().getSelectedItems()),
+                Integer.parseInt(feedback.getSelectedToggle().getUserData().toString()));
 
         StatsChange statsChange = scoringStrategy.parseStatsChange(answeredQuestion);
         statsService.applyChangeToContext(statsChange);
 
+        questionChoiceStrategy.onNextQuestion(answeredQuestion);
         setCurrentQuestion(getNextQuestion());
     }
 
@@ -121,10 +132,9 @@ public class MainController extends BaseController {
     }
 
     private Question getNextQuestion() {
-        return questionChoiceStrategy.getNextQuestion().orElseGet(() -> {
+        return contextService.getNextQuestion().orElseGet(() -> {
             viewResolver.showView(getStage().orElse(new Stage()), "summaryView");
-            return new Question("", new ArrayList<>());
+            return Question.empty();
         });
-
     }
 }

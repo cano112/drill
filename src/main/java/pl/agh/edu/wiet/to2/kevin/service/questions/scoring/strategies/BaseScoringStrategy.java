@@ -7,19 +7,21 @@ import pl.agh.edu.wiet.to2.kevin.model.questions.stats.StatsChange;
 
 public abstract class BaseScoringStrategy implements ScoringStrategy {
 
-    private boolean zeroOnError;
-    private boolean resultCanBeNegative;
-    private boolean fractionalPoints;
-    private double pointsForCorrectAnswer;
-    private double pointsForWrongAnswer;
+    private final boolean zeroOnError;
+    private final boolean resultCanBeNegative;
+    private final boolean fractionalPoints;
+    private final double pointsForCorrectAnswer;
+    private final double pointsForWrongAnswer;
+    private final String strategyName;
 
     public BaseScoringStrategy(boolean zeroOnError, boolean resultCanBeNegative, boolean fractionalPoints,
-                               double pointsFactorForCorrectAnswer, double pointsFactorForWrongAnswer) {
+            double pointsFactorForCorrectAnswer, double pointsFactorForWrongAnswer, String strategyName) {
         this.zeroOnError = zeroOnError;
         this.resultCanBeNegative = resultCanBeNegative;
         this.fractionalPoints = fractionalPoints;
         this.pointsForCorrectAnswer = pointsFactorForCorrectAnswer;
         this.pointsForWrongAnswer = pointsFactorForWrongAnswer;
+        this.strategyName = strategyName;
     }
 
     @Override
@@ -32,7 +34,7 @@ public abstract class BaseScoringStrategy implements ScoringStrategy {
             else wrongAnswers++;
         }
 
-        for (Answer answer : answeredQuestion.getAnswers()) {
+        for (Answer answer : answeredQuestion.getQuestion().getAnswers()) {
             if (answer.isCorrect()) maxAnswers++;
         }
 
@@ -55,5 +57,9 @@ public abstract class BaseScoringStrategy implements ScoringStrategy {
                 Math.abs(score.getScoreValue() - score.getMaxValue()) < 10e-5,
                 Math.abs(score.getScoreValue() - score.getMaxValue()) > 10e-5 && score.getScoreValue() > 0,
                 score.getScoreValue() <= 0);
+    }
+
+    @Override public String getName() {
+        return strategyName;
     }
 }

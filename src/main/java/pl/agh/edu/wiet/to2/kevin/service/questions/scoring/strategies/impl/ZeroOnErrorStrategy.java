@@ -13,11 +13,6 @@ public class ZeroOnErrorStrategy extends BaseScoringStrategy {
     private static final String STRATEGY_NAME = "Zero on error";
 
     public ZeroOnErrorStrategy() {
-        super(true, false, false, 1, 0);
-    }
-
-    @Override
-    public String getName() {
-        return STRATEGY_NAME;
+        super(true, false, false, 1, 0, STRATEGY_NAME);
     }
 }
