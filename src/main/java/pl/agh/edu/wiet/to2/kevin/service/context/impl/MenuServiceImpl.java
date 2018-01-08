@@ -18,7 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component public final class MenuServiceImpl implements MenuService {
+@Component
+public final class MenuServiceImpl implements MenuService {
 
     private final ContextService contextService;
     private final FileChooser fileChooser;
@@ -29,6 +30,13 @@ import java.util.Optional;
         this.contextService = contextService;
         this.fileChooser = fileChooser;
         this.ctx = ctx;
+
+        String userDirectoryString = System.getProperty("user.dir");
+        File userDirectory = new File(userDirectoryString);
+        if (!userDirectory.canRead()) {
+            userDirectory = new File("c:/");
+        }
+        this.fileChooser.setInitialDirectory(userDirectory);
     }
 
     @Override
@@ -54,7 +62,8 @@ import java.util.Optional;
         return FXCollections.observableArrayList(names);
     }
 
-    @Override public void validate() {
+    @Override
+    public void validate() {
         if (contextService.getQuestions().size() == 0)
             throw new EmptyListException("Empty list: no questions parsed");
     }

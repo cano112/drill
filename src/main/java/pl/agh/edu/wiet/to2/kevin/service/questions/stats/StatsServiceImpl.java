@@ -6,7 +6,10 @@ import pl.agh.edu.wiet.to2.kevin.model.context.GameStatistics;
 import pl.agh.edu.wiet.to2.kevin.model.questions.stats.StatsChange;
 import pl.agh.edu.wiet.to2.kevin.service.context.ContextService;
 
-@Service public final class StatsServiceImpl implements StatsService {
+import java.math.BigDecimal;
+
+@Service
+public final class StatsServiceImpl implements StatsService {
 
     private final ContextService contextService;
 
@@ -15,14 +18,15 @@ import pl.agh.edu.wiet.to2.kevin.service.context.ContextService;
         this.contextService = contextService;
     }
 
-    @Override public void applyChangeToContext(StatsChange statsChange) {
+    @Override
+    public void applyChangeToContext(StatsChange statsChange) {
         addPoints(statsChange.getPoints());
 
         if (statsChange.isCorrect())
             incCorrectAnswers();
         else if (statsChange.isPartiallyCorrect())
             incPartiallyCorrectAnswers();
-                else if (statsChange.isWrong())
+        else if (statsChange.isWrong())
             incWrongAnswers();
 
     }
@@ -42,8 +46,8 @@ import pl.agh.edu.wiet.to2.kevin.service.context.ContextService;
         gameStats.setWrongAnswers(gameStats.getWrongAnswers() + 1);
     }
 
-    private void addPoints(Double points) {
+    private void addPoints(BigDecimal points) {
         GameStatistics gameStats = contextService.getGameStatistics();
-        gameStats.setPoints(gameStats.getPoints() + points);
+        gameStats.setPoints(gameStats.getPoints().add(points));
     }
 }

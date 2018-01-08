@@ -5,17 +5,19 @@ import pl.agh.edu.wiet.to2.kevin.model.questions.AnsweredQuestion;
 import pl.agh.edu.wiet.to2.kevin.model.questions.stats.Score;
 import pl.agh.edu.wiet.to2.kevin.model.questions.stats.StatsChange;
 
+import java.math.BigDecimal;
+
 public abstract class BaseScoringStrategy implements ScoringStrategy {
 
     private final boolean zeroOnError;
     private final boolean resultCanBeNegative;
     private final boolean fractionalPoints;
-    private final double pointsForCorrectAnswer;
-    private final double pointsForWrongAnswer;
+    private final BigDecimal pointsForCorrectAnswer;
+    private final BigDecimal pointsForWrongAnswer;
     private final String strategyName;
 
     public BaseScoringStrategy(boolean zeroOnError, boolean resultCanBeNegative, boolean fractionalPoints,
-            double pointsFactorForCorrectAnswer, double pointsFactorForWrongAnswer, String strategyName) {
+                               BigDecimal pointsFactorForCorrectAnswer, BigDecimal pointsFactorForWrongAnswer, String strategyName) {
         this.zeroOnError = zeroOnError;
         this.resultCanBeNegative = resultCanBeNegative;
         this.fractionalPoints = fractionalPoints;
@@ -38,15 +40,15 @@ public abstract class BaseScoringStrategy implements ScoringStrategy {
             if (answer.isCorrect()) maxAnswers++;
         }
 
-        double pointsFactor = 1.0;
-        if (fractionalPoints) pointsFactor /= maxAnswers;
+        BigDecimal pointsFactor = BigDecimal.valueOf(1.0);
+        if (fractionalPoints) pointsFactor = pointsFactor.divide(BigDecimal.valueOf(maxAnswers));
 
-        double earnedPoints = pointsFactor * correctAnswers * pointsForCorrectAnswer
-                + pointsFactor * wrongAnswers * pointsForWrongAnswer;
-        double allPoints = pointsFactor * maxAnswers * pointsForCorrectAnswer;
+        BigDecimal earnedPoints = pointsFactor.multiply(pointsForCorrectAnswer).multiply(BigDecimal.valueOf(correctAnswers))
+                .add(pointsFactor.multiply(pointsForWrongAnswer).multiply(BigDecimal.valueOf(wrongAnswers)));
+        BigDecimal allPoints = pointsFactor.multiply(pointsForCorrectAnswer).multiply(BigDecimal.valueOf(maxAnswers));
 
-        if ((zeroOnError && wrongAnswers > 0) || (!resultCanBeNegative && earnedPoints < 0))
-            earnedPoints = 0.0;
+        if ((zeroOnError && wrongAnswers > 0) || (!resultCanBeNegative && earnedPoints.compareTo(BigDecimal.ZERO) < 0))
+            earnedPoints = BigDecimal.valueOf(0.0);
 
         return new Score(earnedPoints, allPoints);
     }
@@ -54,12 +56,13 @@ public abstract class BaseScoringStrategy implements ScoringStrategy {
     @Override
     public StatsChange parseStatsChange(Score score) {
         return new StatsChange(score.getScoreValue(),
-                Math.abs(score.getScoreValue() - score.getMaxValue()) < 10e-5,
-                Math.abs(score.getScoreValue() - score.getMaxValue()) > 10e-5 && score.getScoreValue() > 0,
-                score.getScoreValue() <= 0);
+                score.getScoreValue().compareTo(score.getMaxValue()) == 0,
+                score.getScoreValue().compareTo(score.getMaxValue()) < 0 && score.getScoreValue().compareTo(BigDecimal.ZERO) > 0,
+                score.getScoreValue().compareTo(BigDecimal.ZERO) <= 0);
     }
 
-    @Override public String getName() {
+    @Override
+    public String getName() {
         return strategyName;
     }
 }

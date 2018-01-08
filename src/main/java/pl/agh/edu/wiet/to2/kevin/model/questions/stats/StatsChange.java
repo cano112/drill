@@ -1,19 +1,21 @@
 package pl.agh.edu.wiet.to2.kevin.model.questions.stats;
 
+import java.math.BigDecimal;
+
 public final class StatsChange {
-    private final double points;
+    private final BigDecimal points;
     private final boolean correct;
     private final boolean partiallyCorrect;
     private final boolean wrong;
 
-    public StatsChange(double points, boolean correct, boolean partiallyCorrect, boolean wrong) {
+    public StatsChange(BigDecimal points, boolean correct, boolean partiallyCorrect, boolean wrong) {
         this.points = points;
         this.correct = correct;
         this.partiallyCorrect = partiallyCorrect;
         this.wrong = wrong;
     }
 
-    public double getPoints() {
+    public BigDecimal getPoints() {
         return points;
     }
 

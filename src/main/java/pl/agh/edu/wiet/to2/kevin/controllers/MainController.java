@@ -29,7 +29,8 @@ import pl.agh.edu.wiet.to2.kevin.views.resolver.ViewResolver;
 import java.util.HashSet;
 
 @Controller
-@Scope("prototype") public final class MainController extends BaseController {
+@Scope("prototype")
+public final class MainController extends BaseController {
 
     private final ContextService contextService;
     private final ViewResolver viewResolver;
@@ -47,7 +48,8 @@ import java.util.HashSet;
     @FXML
     private ObjectProperty<GameStatistics> gameStatistics;
 
-    @FXML private ToggleGroup feedback;
+    @FXML
+    private ToggleGroup feedback;
 
     @Autowired
     public MainController(ContextService contextService, ViewResolver viewResolver, StatsService statsService) {
@@ -75,12 +77,14 @@ import java.util.HashSet;
         // initialize view properties
         answersListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         answersListView.setItems(getCurrentQuestion().getAnswers());
-        answersListView.setCellFactory(new Callback<>() {
-            @Override public ListCell<Answer> call(ListView<Answer> list) {
-                return new ListCell<>() {
+        answersListView.setCellFactory(new Callback<ListView<Answer>, ListCell<Answer>>() {
+            @Override
+            public ListCell<Answer> call(ListView<Answer> list) {
+                return new ListCell<Answer>() {
                     private Text text;
 
-                    @Override public void updateItem(Answer item, boolean empty) {
+                    @Override
+                    public void updateItem(Answer item, boolean empty) {
                         super.updateItem(item, empty);
                         if (!isEmpty()) {
                             text = new Text(item.toString());

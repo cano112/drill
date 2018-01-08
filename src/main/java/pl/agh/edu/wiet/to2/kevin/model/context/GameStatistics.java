@@ -1,15 +1,17 @@
 package pl.agh.edu.wiet.to2.kevin.model.context;
 
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
+
+import java.math.BigDecimal;
 
 public final class GameStatistics {
 
     @FXML
-    private DoubleProperty points;
+    private ObjectProperty<BigDecimal> points;
 
     @FXML
     private IntegerProperty correctAnswers;
@@ -21,7 +23,7 @@ public final class GameStatistics {
     private IntegerProperty wrongAnswers;
 
     public GameStatistics() {
-        points = new SimpleDoubleProperty(0);
+        points = new SimpleObjectProperty<>(BigDecimal.valueOf(0));
         correctAnswers = new SimpleIntegerProperty(0);
         partiallyCorrectAnswers = new SimpleIntegerProperty(0);
         wrongAnswers = new SimpleIntegerProperty(0);
@@ -63,15 +65,15 @@ public final class GameStatistics {
         this.wrongAnswers.set(wrongAnswers);
     }
 
-    public double getPoints() {
+    public BigDecimal getPoints() {
         return points.get();
     }
 
-    public DoubleProperty pointsProperty() {
+    public ObjectProperty<BigDecimal> pointsProperty() {
         return points;
     }
 
-    public void setPoints(double points) {
+    public void setPoints(BigDecimal points) {
         this.points.set(points);
     }
 }
