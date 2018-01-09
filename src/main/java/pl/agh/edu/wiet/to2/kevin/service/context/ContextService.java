@@ -13,27 +13,19 @@ import java.util.Optional;
 public interface ContextService {
 
     AppContext getContext();
-
     List<Question> getQuestions();
     int getQuestionsCount();
     GameStatistics getGameStatistics();
-
     Optional<String> getTestFileName();
     void setTest(String testFilePath);
-
     void setScoringStrategyName(String scoringStrategy);
     Optional<String> getScoringStrategyName();
     Optional<ScoringStrategy> getScoringStrategy();
-
     void setQuestionChoiceStrategyName(String questionChoiceStrategy);
     Optional<String> getQuestionChoiceStrategyName();
     Optional<QuestionChoiceStrategy> getQuestionChoiceStrategy();
-
     Optional<Question> getNextQuestion();
-
     void addToQuestionQueue(Question question);
-
     void addToQuestionQueue(Collection<? extends Question> questions);
-
     void resetToDefault();
 }

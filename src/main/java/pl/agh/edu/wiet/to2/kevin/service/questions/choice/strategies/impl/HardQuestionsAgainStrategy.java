@@ -17,7 +17,7 @@ import pl.agh.edu.wiet.to2.kevin.service.questions.choice.strategies.BaseQuestio
     }
 
     @Override public void onNextQuestion(AnsweredQuestion answeredQuestion) {
-        if (answeredQuestion.getFeedback().getMark() < 2) {
+        if (answeredQuestion.getFeedback().getMark() >= 2) {
             contextService.addToQuestionQueue(answeredQuestion.getQuestion());
         }
     }

@@ -91,6 +91,8 @@ public final class MainController extends BaseController {
                             text.wrappingWidthProperty().bind(answersListView.widthProperty().subtract(15));
                             setPrefWidth(0);
                             setGraphic(text);
+                        } else {
+                            setGraphic(new Text(""));
                         }
                     }
                 };
