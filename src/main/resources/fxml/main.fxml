@@ -4,7 +4,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/9.0.1" fx:controller="pl.agh.edu.wiet.to2.kevin.controllers.MainController">
+            xmlns="http://javafx.com/javafx/8.0.121"
+            fx:controller="pl.agh.edu.wiet.to2.kevin.controllers.MainController">
    <children>
       <SplitPane dividerPositions="0.6909547738693468" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0">
         <items>
@@ -16,14 +17,14 @@
                    </HBox>
                    <ListView fx:id="answersListView" layoutX="8.0" layoutY="105.0" prefHeight="100.0"
                              prefWidth="578.0"/>
-                   <Button fx:id="nextButton" layoutX="545.0" layoutY="208.0" mnemonicParsing="false"
+                   <Button fx:id="nextButton" layoutX="535.0" layoutY="208.0" mnemonicParsing="false"
                            onAction="#onNextButtonClicked" text="Next"/>
                    <RadioButton layoutX="14.0" layoutY="212.0" mnemonicParsing="false" text="easy" userData="1">
                        <toggleGroup>
                            <ToggleGroup fx:id="feedback"/>
                        </toggleGroup>
                    </RadioButton>
-                   <RadioButton layoutX="67.0" layoutY="212.0" mnemonicParsing="false" selected="true" text="hard"
+                   <RadioButton layoutX="78.0" layoutY="212.0" mnemonicParsing="false" selected="true" text="hard"
                                 toggleGroup="$feedback" userData="2"/>
                </children>
             </AnchorPane>
@@ -34,10 +35,10 @@
                            text="Partially correct answers:"/>
                     <Label layoutX="14.0" layoutY="54.0" prefHeight="17.0" prefWidth="244.0" text="Wrong answers:"/>
                     <Label layoutX="14.0" layoutY="74.0" prefHeight="17.0" prefWidth="244.0" text="Points:"/>
-                    <Button layoutX="534.0" layoutY="10.0" mnemonicParsing="false" onAction="#onMenuButtonClicked"
-                            prefWidth="50.0" text="Menu"/>
-                    <Button layoutX="534.0" layoutY="39.0" mnemonicParsing="false" onAction="#onResetButtonClicked"
-                            prefWidth="50.0" text="Reset"/>
+                    <Button layoutX="505.0" layoutY="10.0" mnemonicParsing="false" onAction="#onMenuButtonClicked"
+                            prefHeight="31.0" prefWidth="79.0" text="Menu"/>
+                    <Button layoutX="505.0" layoutY="39.0" mnemonicParsing="false" onAction="#onResetButtonClicked"
+                            prefHeight="31.0" prefWidth="79.0" text="Reset"/>
                     <Label layoutX="258.0" layoutY="14.0" text="${controller.gameStatistics.correctAnswers}" />
                     <Label layoutX="258.0" layoutY="34.0" text="${controller.gameStatistics.partiallyCorrectAnswers}" />
                     <Label layoutX="258.0" layoutY="54.0" text="${controller.gameStatistics.wrongAnswers}" />
