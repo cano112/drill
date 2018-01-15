@@ -6,13 +6,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 
-public class Answer {
+public final class Answer {
 
-    @FXML
-    private StringProperty answer;
+    @FXML private final StringProperty answer;
 
-    @FXML
-    private BooleanProperty correct;
+    @FXML private final BooleanProperty correct;
 
     public Answer(String answer, boolean correct) {
         this.answer = new SimpleStringProperty(answer);
@@ -26,10 +24,6 @@ public class Answer {
         return correct;
     }
 
-    public void setCorrect(boolean correct) {
-        this.correct.set(correct);
-    }
-
     public String getAnswer() {
         return answer.get();
     }
@@ -38,12 +32,25 @@ public class Answer {
         return answer;
     }
 
-    public void setAnswer(String answer) {
-        this.answer.set(answer);
-    }
-
     @Override
     public String toString() {
         return answer.get();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Answer answer1 = (Answer) o;
+
+        return answer.equals(answer1.answer) && correct.equals(answer1.correct);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = answer.hashCode();
+        result = 31 * result + correct.hashCode();
+        return result;
     }
 }

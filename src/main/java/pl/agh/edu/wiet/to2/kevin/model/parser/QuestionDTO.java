@@ -1,10 +1,8 @@
 package pl.agh.edu.wiet.to2.kevin.model.parser;
 
-import pl.agh.edu.wiet.to2.kevin.model.parser.AnswerDTO;
-
 import java.util.List;
 
-public class QuestionDTO {
+public final class QuestionDTO {
     private String question;
     private List<AnswerDTO> answers;
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="200.0" prefWidth="400.0"
+            xmlns="http://javafx.com/javafx/8.0.121"
+            fx:controller="pl.agh.edu.wiet.to2.kevin.controllers.MenuController">
+   <children>
+      <GridPane layoutX="13.0" layoutY="35.0" prefHeight="103.0" prefWidth="347.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="175.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="237.0" minWidth="10.0" prefWidth="172.0"/>
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+             <Button mnemonicParsing="false" onAction="#onBrowseButtonClicked" prefHeight="25.0" prefWidth="185.0"
+                     text="Browse test file" GridPane.rowIndex="1"/>
+             <ChoiceBox fx:id="scoringStrategyChoiceBox" prefHeight="25.0" prefWidth="182.0" GridPane.rowIndex="2"/>
+             <ChoiceBox fx:id="questionChoiceStrategyChoiceBox" prefHeight="25.0" prefWidth="192.0"
+                        GridPane.rowIndex="3"/>
+             <Label prefHeight="17.0" prefWidth="161.0" text="${controller.fileName}" GridPane.columnIndex="1"
+                    GridPane.halignment="RIGHT" GridPane.rowIndex="1"/>
+         </children>
+      </GridPane>
+      <Button layoutX="290.0" layoutY="149.0" mnemonicParsing="false" onAction="#onStartButtonClicked" prefHeight="25.0" prefWidth="70.0" text="Start" />
+   </children>
+</AnchorPane>

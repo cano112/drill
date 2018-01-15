@@ -6,10 +6,9 @@ import javafx.fxml.FXML;
 
 import java.util.List;
 
-public class Test {
+public final class Test {
 
-    @FXML
-    private ObservableList<Question> questions;
+    @FXML private final ObservableList<Question> questions;
 
     public Test(List<Question> questions) {
         this.questions = FXCollections.observableList(questions);
@@ -19,7 +18,18 @@ public class Test {
         return questions;
     }
 
-    public void setQuestions(List<Question> questions) {
-        this.questions.setAll(questions);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Test test = (Test) o;
+
+        return questions.equals(test.questions);
+    }
+
+    @Override
+    public int hashCode() {
+        return questions.hashCode();
     }
 }

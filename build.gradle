@@ -18,12 +18,12 @@ repositories {
 apply plugin: 'javafx-gradle-plugin'
 apply plugin: 'application'
 
-mainClassName = 'pl.agh.edu.wiet.to2.kevin.App'
+mainClassName = 'pl.agh.edu.wiet.to2.kevin.AppLauncher'
 
 
 jfx {
     // minimal requirement for jfxJar-task
-    mainClass = 'pl.agh.edu.wiet.to2.kevin.App'
+    mainClass = 'pl.agh.edu.wiet.to2.kevin.AppLauncher'
 
     // minimal requirement for jfxNative-task
     vendor = 'Drill'

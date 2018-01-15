@@ -2,6 +2,7 @@ package pl.agh.edu.wiet.to2.kevin.service.parser;
 
 import pl.agh.edu.wiet.to2.kevin.exceptions.parser.*;
 import pl.agh.edu.wiet.to2.kevin.model.questions.Test;
+import pl.agh.edu.wiet.to2.kevin.service.parser.impl.YamlTestParsingService;
 
 import static org.junit.Assert.*;
 

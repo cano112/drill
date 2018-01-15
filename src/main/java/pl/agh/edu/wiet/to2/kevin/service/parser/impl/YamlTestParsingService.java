@@ -1,18 +1,19 @@
-package pl.agh.edu.wiet.to2.kevin.service.parser;
+package pl.agh.edu.wiet.to2.kevin.service.parser.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import pl.agh.edu.wiet.to2.kevin.exceptions.parser.MismatchedInputException;
+import org.springframework.stereotype.Service;
 import pl.agh.edu.wiet.to2.kevin.exceptions.parser.IncorrectAnswerFormatException;
 import pl.agh.edu.wiet.to2.kevin.exceptions.parser.IncorrectQuestionFormatException;
+import pl.agh.edu.wiet.to2.kevin.exceptions.parser.MismatchedInputException;
 import pl.agh.edu.wiet.to2.kevin.exceptions.parser.ParseException;
-import org.springframework.stereotype.Service;
-import pl.agh.edu.wiet.to2.kevin.model.questions.Answer;
-import pl.agh.edu.wiet.to2.kevin.model.questions.Test;
-import pl.agh.edu.wiet.to2.kevin.model.questions.Question;
 import pl.agh.edu.wiet.to2.kevin.model.parser.AnswerDTO;
-import pl.agh.edu.wiet.to2.kevin.model.parser.TestDTO;
 import pl.agh.edu.wiet.to2.kevin.model.parser.QuestionDTO;
+import pl.agh.edu.wiet.to2.kevin.model.parser.TestDTO;
+import pl.agh.edu.wiet.to2.kevin.model.questions.Answer;
+import pl.agh.edu.wiet.to2.kevin.model.questions.Question;
+import pl.agh.edu.wiet.to2.kevin.model.questions.Test;
+import pl.agh.edu.wiet.to2.kevin.service.parser.TestParsingService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,8 +21,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
-public class YamlTestParsingService implements TestParsingService {
+@Service public final class YamlTestParsingService implements TestParsingService {
 
     public Test parse(String path) throws ParseException {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());

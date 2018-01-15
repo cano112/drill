@@ -1,37 +1,24 @@
 package pl.agh.edu.wiet.to2.kevin;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.stereotype.Component;
-import pl.agh.edu.wiet.to2.kevin.model.context.AppContext;
+import pl.agh.edu.wiet.to2.kevin.controllers.ExceptionHandler;
+import pl.agh.edu.wiet.to2.kevin.views.resolver.ViewResolver;
 
-@Component
-public class App extends Application {
+public abstract class App extends Application {
 
-    @Autowired
-    private AppContext appContext;
+    private final ApplicationContext ctx;
 
-    public static void main(String[] args) {
-        launch(args);
+    public App() {
+        this.ctx = new AnnotationConfigApplicationContext("pl.agh.edu.wiet.to2.kevin");
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-
-        ApplicationContext ctx = new AnnotationConfigApplicationContext("pl.agh.edu.wiet.to2.kevin");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
-        loader.setControllerFactory(ctx::getBean);
-        Parent root = loader.load();
-        Scene scene = new Scene(root, 600, 400);
-        stage.setTitle("Drill");
-        stage.setScene(scene);
-        stage.show();
+        Thread.setDefaultUncaughtExceptionHandler((ExceptionHandler) ctx.getBean("exceptionHandler"));
+        ViewResolver viewResolver =(ViewResolver)ctx.getBean("viewResolver");
+        viewResolver.showView(stage, "menuView");
     }
 }
